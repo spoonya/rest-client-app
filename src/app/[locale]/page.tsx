@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
-import '@ant-design/v5-patch-for-react-19';
 import { LocaleSwitcher } from '@/components/common';
+import '@/styles/globals.css';
 
 export default function Home() {
   const t = useTranslations('HomePage');
