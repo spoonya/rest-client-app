@@ -1,6 +1,9 @@
-@use './utils/variables' as *;
+/* @use './utils/variables' as *; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*,
+* *,
 *::after,
 *::before {
   box-sizing: border-box;
@@ -9,12 +12,11 @@
 html {
   scroll-behavior: smooth;
 }
-
 body {
-  font-family: $ff-default;
+  /* font-family: $ff-default; */
 }
 
-button {
+/* button {
   display: inline-block;
 
   font: inherit;
@@ -26,14 +28,7 @@ button {
   user-select: none;
 
   cursor: pointer;
-
-  border: none;
-  background: none;
-
-  &:focus {
-    outline: 0;
-  }
-}
+} */
 
 .list-reset {
   list-style-type: none;
