@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from 'antd';
 import cn from 'classnames';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
@@ -8,9 +7,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { locales } from '@/i18n/routing';
 import { AppRoutes } from '@/services';
 
-import classes from './locale.switcher.module.scss';
+import classes from './locale.switcher.module.css';
 
 import type { Locale } from '@/i18n/routing';
+import { Button } from '@heroui/react';
 interface LocaleSwitcherProps {
   className?: string;
 }
@@ -39,8 +39,8 @@ export const LocaleSwitcher = ({
       {locales.map((locale) => (
         <Button
           key={locale}
-          type={locale === currentLocale ? 'primary' : 'default'}
-          onClick={() => switchLocale(locale)}
+          color={locale === currentLocale ? 'primary' : 'default'}
+          onPress={() => switchLocale(locale)}
           disabled={locale === currentLocale}
         >
           {locale.toUpperCase()}

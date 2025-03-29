@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
-import '@/styles/globals.scss';
+import '@/styles/globals.css';
 
-import { NextIntlClientProvider } from 'next-intl';
+import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import { JetBrains_Mono } from 'next/font/google';
-
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
+import { Providers } from '../providers';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -17,21 +20,44 @@ const jetBrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-  params: { locale: string };
+type Props = {
+  children: ReactNode;
+  params: Promise<{ locale: Locale }>;
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<RootLayoutProps>) {
+// export default function RootLayout({
+//   children,
+//   params: { locale },
+// }: Readonly<RootLayoutProps>) {
+//   return (
+//     <html lang={locale}>
+//       <body className={jetBrainsMono.className}>
+//         <NextIntlClientProvider locale={locale}>
+//           <AntdRegistry>{children}</AntdRegistry>
+//         </NextIntlClientProvider>
+//       </body>
+//     </html>
+//   );
+// }
+
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
   return (
-    <html lang={locale}>
+    <html className="h-full" lang={locale}>
       <body className={jetBrainsMono.className}>
-        <NextIntlClientProvider locale={locale}>
-          <AntdRegistry>{children}</AntdRegistry>
-        </NextIntlClientProvider>
+        <Providers>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );
