@@ -6,7 +6,7 @@
     "description": "Could not find requested resource",
     "button": "Return Home"
   },
-  "auth": {
+  "Auth": {
     "sign-in": "Sign in",
     "sign-up": "Sign up",
     "logout": "Logout"

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-* *,
+*,
 *::after,
 *::before {
   box-sizing: border-box;
@@ -14,6 +14,13 @@ html {
 
 body {
   font-family: var(--font-jetbrains-mono);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 .list-reset {

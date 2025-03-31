@@ -1,6 +1,6 @@
 export const useAuth = () => {
   return {
-    user: false,
+    user: true,
     logout: () => null,
   };
 };
