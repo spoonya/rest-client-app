@@ -1,22 +1,18 @@
 'use client';
 
-import classes from '@/styles/error.module.scss';
+import { Button } from '@heroui/react';
 
 interface ErrorProps {
-  error: Error & { digest?: string };
+  error: Error;
   reset: () => void;
 }
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function Error({ error, reset }: Readonly<ErrorProps>) {
   return (
-    <div className={classes.error}>
-      <div className={classes.oops}>Oops!</div>
-      <div className={classes.message}>{error.message}</div>
-      <div>
-        <button className={classes.retryButton} onClick={() => reset()}>
-          🔄 Retry!
-        </button>
-      </div>
+    <div>
+      <h2>Error</h2>
+      <pre>{error.message}</pre>
+      <Button onPress={() => reset()}>Try again</Button>
     </div>
   );
 }

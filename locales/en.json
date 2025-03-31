@@ -1,5 +1,14 @@
 {
   "HomePage": {
     "title": "Hello"
+  },
+  "404": {
+    "description": "Could not find requested resource",
+    "button": "Return Home"
+  },
+  "auth": {
+    "sign-in": "Sign in",
+    "sign-up": "Sign up",
+    "logout": "Logout"
   }
 }
