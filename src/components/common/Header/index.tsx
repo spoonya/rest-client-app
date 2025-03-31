@@ -1,11 +1,12 @@
 import cn from 'classnames';
 
-import classes from './header.module.scss';
+import classes from './header.module.css';
+import Navigation from '../Navigation/Navigation';
 
 interface HeadeProps {
   className?: string;
 }
 
 export const Header = ({ className }: HeadeProps) => {
-  return <h1 className={cn(classes.header, className)}>Header</h1>;
+  return <header className={cn(classes.header, className)}><Navigation/></header>;
 };
