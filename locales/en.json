@@ -1,14 +1,30 @@
 {
   "HomePage": {
-    "title": "Hello"
+    "title": "Hello",
+    "description": "This is a main page"
   },
-  "404": {
-    "description": "Could not find requested resource",
-    "button": "Return Home"
+  "Navigation": {
+    "home": "Home",
+    "Sign In": "Sign In",
+    "Sign Up": "Sign Up",
+    "Sign Out": "Sign Out",
+    "pathnames": "Pathnames"
   },
   "Auth": {
-    "sign-in": "Sign in",
-    "sign-up": "Sign up",
-    "logout": "Logout"
-  }
+    "Sign In": "Log in",
+    "Sign Up": "Sign up",
+    "Sign In Auth": "Sign in",
+    "Sign Up Auth": "Sign up",
+    "isAuth": "You don't have an account?",
+    "isNotAuth": "Do you have an account?"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ru {ru Rus} en {🇺🇸 Eng} other {Unknown}}"
+  },
+  "404": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist"
+  },
+  "PageLayout": {}
 }

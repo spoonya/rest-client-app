@@ -1,14 +1,30 @@
 {
   "HomePage": {
-    "title": "Здарова"
+    "title": "Здарова",
+    "description": "This is a main page"
   },
-  "404": {
-    "description": "Не удалось найти запрашиваемый ресурс",
-    "button": "На главную"
+  "Navigation": {
+    "home": "Домой",
+    "Sign In": "Войти",
+    "Sign Up": "Зарегистрироваться",
+    "Sign Out": "Выйти",
+    "pathnames": "Pathnames"
   },
   "Auth": {
-    "sign-in": "Войти",
-    "sign-up": "Зарегистрироваться",
-    "logout": "Выйти"
-  }
+    "Sign In": "Вход",
+    "Sign Up": "Зарегистрируйтесь",
+    "Sign In Auth": "Логин",
+    "Sign Up Auth": "Регистрация",
+    "isNotAuth": "У вас нет аккаунта?",
+    "isAuth": "У вас есть аккаунт?"
+  },
+  "LocaleSwitcher": {
+    "label": "Изменить язык",
+    "locale": "{locale, select, ru {ru рус} en {angl англ} other {другой}}"
+  },
+  "404": {
+    "title": "Страница не найдена",
+    "description": "Страница, которую вы ищите, не существует"
+  },
+  "PageLayout": {}
 }

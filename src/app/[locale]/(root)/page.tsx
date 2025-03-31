@@ -1,13 +1,15 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 
-import { Container } from '@/components/ui';
+import { PageLayout } from '@/components';
 
 export default function Home() {
   const t = useTranslations('HomePage');
 
   return (
-    <Container>
-      <h1>{t('title')}</h1>
-    </Container>
+    <PageLayout title={t('title')}>
+      <p className="max-w-[590px]">{t.rich('description')}</p>
+    </PageLayout>
   );
 }

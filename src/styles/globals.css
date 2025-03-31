@@ -13,6 +13,8 @@ html {
 }
 
 body {
+  height: 100lvh;
+  width: 100%;
   font-family: var(--font-jetbrains-mono);
 }
 

@@ -1,1 +1,1 @@
-export { isAuthenticated } from './auth';
+export { supabase } from './supabase';

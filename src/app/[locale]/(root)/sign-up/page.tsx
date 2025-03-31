@@ -1,8 +1,8 @@
-import { SignUpForm } from '@/components/shared';
+import { SignUpForm } from '@/components';
 
-export default function SignUp() {
+export default function SignUpPage() {
   return (
-    <div>
+    <div className="min-h-screen flex justify-center items-center">
       <SignUpForm />
     </div>
   );
