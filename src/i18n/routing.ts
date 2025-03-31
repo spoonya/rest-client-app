@@ -1,9 +1,9 @@
 import { defineRouting } from 'next-intl/routing';
 
-export const locales = ['en', 'ru'] as const;
-export type Locale = (typeof locales)[number];
+import { locales } from '@/services';
+import { Locale } from '@/types';
 
 export const routing = defineRouting({
   locales,
-  defaultLocale: 'ru',
+  defaultLocale: process.env.NEXT_PUBLIC_DEFAULT_LOCALE as Locale,
 });

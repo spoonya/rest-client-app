@@ -1,16 +1,22 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
+import { Header } from '@/components/shared';
 import { AppRoutes } from '@/services';
-import { Button } from '@heroui/react';
+import { Button, Link } from '@heroui/react';
 
 export default function NotFound() {
+  const t = useTranslations('404');
+
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Button color="primary" href={AppRoutes.HOME}>
-        Return Home
+    <main>
+      <Header />
+      <h2>404</h2>
+      <p>{t('description')}</p>
+      <Button as={Link} href={AppRoutes.HOME} color="primary">
+        {t('button')}
       </Button>
-    </div>
+    </main>
   );
 }

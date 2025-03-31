@@ -22,7 +22,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "@supabase/supabase-js": "^2.49.3",
     "@tailwindcss/postcss": "^4.0.17",
-    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.484.0",
     "next": "15.2.4",
@@ -32,6 +32,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.55.0",
     "react-redux": "^9.2.0",
+    "tailwind-merge": "^3.0.2",
     "zod": "^3.24.2"
   },
   "devDependencies": {
