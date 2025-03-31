@@ -1,4 +1,4 @@
-import { Editor } from '@/components/shared';
+import { Editor } from '@/components';
 
 export default function RestClient() {
   return (

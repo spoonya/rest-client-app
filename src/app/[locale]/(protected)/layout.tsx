@@ -1,4 +1,5 @@
-import { Footer, Header } from '@/components/shared';
+import { Footer, Header } from '@/components';
+import { cn } from '@/utils';
 
 export default function ProtectedLayout({
   children,

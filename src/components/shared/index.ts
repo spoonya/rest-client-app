@@ -5,4 +5,5 @@ export { Footer } from './Footer';
 export { Navigation } from './Navigation';
 export { PageLayout } from './PageLayout';
 export { Sidebar } from './Sidebar';
+export { Editor } from './Editor';
 export * from './forms';
