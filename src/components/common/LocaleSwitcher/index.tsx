@@ -1,26 +1,27 @@
 'use client';
 
-import cn from 'classnames';
-import { useLocale } from 'next-intl';
+// import cn from 'classnames';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { locales } from '@/i18n/routing';
+import { locales, routing } from '@/i18n/routing';
 import { AppRoutes } from '@/services';
 
-import classes from './locale.switcher.module.css';
+// import classes from './locale.switcher.module.css';
 
 import type { Locale } from '@/i18n/routing';
-import { Button } from '@heroui/react';
+import { Select, SelectItem } from '@heroui/react';
 interface LocaleSwitcherProps {
   className?: string;
 }
 
 export const LocaleSwitcher = ({
-  className,
 }: Readonly<LocaleSwitcherProps>) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
+  const t = useTranslations('LocaleSwitcher');
+  // const locale = useLocale();
 
   const switchLocale = (newLocale: Locale) => {
     const segments = pathname.split('/');
@@ -35,17 +36,20 @@ export const LocaleSwitcher = ({
   };
 
   return (
-    <div className={cn(classes.switcher, className)}>
-      {locales.map((locale) => (
-        <Button
-          key={locale}
-          color={locale === currentLocale ? 'primary' : 'default'}
-          onPress={() => switchLocale(locale)}
-          disabled={locale === currentLocale}
+    <Select className="max-w-lg"
+      defaultSelectedKeys={[currentLocale]}
+      label={t('label')}
+      placeholder="Select lang"
+    >
+      {routing.locales.map((cur) => (
+        <SelectItem
+          key={cur}
+          // color={locale === currentLocale ? 'primary' : 'default'}
+          onPress={() => switchLocale(cur)}
         >
-          {locale.toUpperCase()}
-        </Button>
+         {t('locale', {locale: cur})}
+        </SelectItem>
       ))}
-    </div>
+    </Select>
   );
 };
