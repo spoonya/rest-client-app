@@ -1,5 +1,18 @@
 {
   "HomePage": {
-    "title": "Hello"
-  }
+    "title": "Hello",
+    "description": "This is a main page"
+  },
+  "Navigation": {
+    "home": "Home",
+    "Sign In": "Sign In",
+    "Sign Up": "Sign Up",
+    "Sign Out": "Sign Out",
+    "pathnames": "Pathnames"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ru {ru Rus} en {🇺🇸 Eng} other {Unknown}}"
+  },
+  "PageLayout": {}
 }

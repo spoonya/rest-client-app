@@ -1,5 +1,18 @@
 {
   "HomePage": {
-    "title": "Здарова"
-  }
+    "title": "Здарова",
+    "description": "This is a main page"
+  },
+  "Navigation": {
+    "home": "Домой",
+    "Sign In": "Войти",
+    "Sign Up": "Зарегистрироваться",
+    "Sign Out": "Выйти",
+    "pathnames": "Pathnames"
+  },
+  "LocaleSwitcher": {
+    "label": "Изменить язык",
+    "locale": "{locale, select, ru {ru рус} en {angl англ} other {другой}}"
+  },
+  "PageLayout": {}
 }
