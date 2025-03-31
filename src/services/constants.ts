@@ -9,3 +9,30 @@ export enum AppRoutes {
 }
 
 export const locales = ['en', 'ru'] as const;
+
+export const requestMethods = [
+  {
+    value: 'GET',
+    label: 'GET',
+  },
+  {
+    value: 'POST',
+    label: 'POST',
+  },
+  {
+    value: 'PUT',
+    label: 'PUT',
+  },
+  {
+    value: 'DELETE',
+    label: 'DELETE',
+  },
+  {
+    value: 'PATCH',
+    label: 'PATCH',
+  },
+] as const;
+
+export enum requestTabs {
+  HEADERS = 'Headers',
+}

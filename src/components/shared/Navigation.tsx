@@ -24,7 +24,9 @@ export function Navigation() {
   return (
     <Navbar>
       <NavbarBrand className="w-40">
-        <Logo />
+        <Link href={AppRoutes.HOME}>
+          <Logo />
+        </Link>
       </NavbarBrand>
       <NavbarContent>
         <NavbarItem className="w-full">

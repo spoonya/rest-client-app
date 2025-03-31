@@ -50,7 +50,7 @@ export const Editor = ({ className }: Readonly<EditorProps>) => {
     <MonacoEditor
       className={cn(className)}
       onMount={handleEditorMount}
-      height={'90vh'}
+      height={'100%'}
       width={'100%'}
       language="json"
       options={{

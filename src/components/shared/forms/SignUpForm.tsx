@@ -5,9 +5,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { supabase } from '@/lib/supabase';
-import { Input } from '@heroui/input';
-import { Button, Link } from '@heroui/react';
+import { supabase } from '@/lib';
+import { Button, Input, Link } from '@heroui/react';
 
 export function SignUpForm() {
   const t = useTranslations('Auth');

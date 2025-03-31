@@ -1,6 +1,6 @@
 'use client';
 
-import { developers } from '@/data/developers';
+import { developers } from '@/data';
 import { cn } from '@/utils';
 import { Navbar, NavbarContent, NavbarItem } from '@heroui/react';
 
@@ -16,13 +16,13 @@ export const Footer = ({ className }: HeaderProps) => {
       <Navbar>
         <NavbarContent>
           <NavbarItem>
-            {developers.map((user) => (
-              <div key={user.name}>
+            {developers.map((developer) => (
+              <div key={developer.name}>
                 <DeveloperItem
                   developer={{
-                    name: user.name,
-                    avatar: user.avatar,
-                    git: user.git,
+                    name: developer.name,
+                    avatar: developer.avatar,
+                    git: developer.git,
                   }}
                 />
               </div>

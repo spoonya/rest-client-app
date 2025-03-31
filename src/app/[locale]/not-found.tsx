@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Header } from '@/components/shared';
+import { Header } from '@/components';
 import { AppRoutes } from '@/services';
 import { Button, Link } from '@heroui/react';
 

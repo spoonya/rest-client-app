@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/components/shared';
+import { cn } from '@/utils';
 
 export default function ProtectedLayout({
   children,
@@ -6,10 +6,10 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className={cn('min-h-screen', 'page')}>
-      <Header />
+    <main className={cn('min-h-screen h-screen', 'page')}>
+      {/* <Header /> */}
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }
