@@ -1,14 +1,15 @@
 import { useTranslations } from 'next-intl';
-import { LocaleSwitcher } from '@/components/common';
 import '@/styles/globals.css';
+import PageLayout from '@/components/common/PageLayout/PageLayout';
 
 export default function Home() {
   const t = useTranslations('HomePage');
 
   return (
-    <>
-      <h1>{t('title')}</h1>
-      <LocaleSwitcher />
-    </>
+    <PageLayout title={t('title')}>
+      <p className="max-w-[590px]">
+        {t.rich('description')}
+      </p>
+    </PageLayout>
   );
 }
