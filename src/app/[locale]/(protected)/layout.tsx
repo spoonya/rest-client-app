@@ -4,10 +4,9 @@ export default function ProtectedLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen">
+    <main className={cn('min-h-screen', 'page')}>
       <Header />
       {children}
       <Footer />

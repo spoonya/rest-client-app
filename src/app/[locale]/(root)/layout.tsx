@@ -1,10 +1,9 @@
-import { Footer, Header } from '@/components/shared';
+import { Footer, Header } from '@/components';
 
 export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <main className="min-h-screen">
