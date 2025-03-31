@@ -9,7 +9,6 @@ export default function ProtectedLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   const user = isAuthenticated();
   if (!user) redirect(AppRoutes.SIGN_IN);

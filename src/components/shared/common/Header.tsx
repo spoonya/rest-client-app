@@ -17,7 +17,7 @@ interface HeaderProsp {
 
 export const Header = ({ className }: Readonly<HeaderProsp>) => {
   const { user, logout } = useAuth();
-  const t = useTranslations('auth');
+  const t = useTranslations('Auth');
 
   return (
     <header

@@ -2,3 +2,4 @@ export { Header } from './Header';
 export { Footer } from './Footer';
 export { LocaleSwitcher } from './LocaleSwitcher';
 export { Editor } from './Editor';
+export { Sidebar } from './Sidebar';
