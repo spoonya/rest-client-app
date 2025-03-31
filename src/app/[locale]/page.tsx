@@ -7,9 +7,7 @@ export default function Home() {
 
   return (
     <PageLayout title={t('title')}>
-      <p className="max-w-[590px]">
-        {t.rich('description')}
-      </p>
+      <p className="max-w-[590px]">{t.rich('description')}</p>
     </PageLayout>
   );
 }

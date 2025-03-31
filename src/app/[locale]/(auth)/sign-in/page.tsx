@@ -1,12 +1,9 @@
-// import cn from 'classnames';
+import SignInForm from '@/components/auth/Forms/SignInForm';
 
-
-interface HeadeProps {
-  className?: string;
+export default function SignInPage() {
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <SignInForm />
+    </div>
+  );
 }
-
-const Auth = ({ className }: HeadeProps) => {
-  return <div className={className}>Sign in</div>;
-};
-
-export default Auth

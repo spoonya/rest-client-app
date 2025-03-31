@@ -10,6 +10,14 @@
     "Sign Out": "Sign Out",
     "pathnames": "Pathnames"
   },
+  "Auth": {
+    "Sign In": "Log in",
+    "Sign Up": "Sign up",
+    "Sign In Auth": "Sign in",
+    "Sign Up Auth": "Sign up",
+    "isAuth": "You don't have an account?",
+    "isNotAuth": "Do you have an account?"
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, ru {ru Rus} en {🇺🇸 Eng} other {Unknown}}"

@@ -10,6 +10,14 @@
     "Sign Out": "Выйти",
     "pathnames": "Pathnames"
   },
+  "Auth": {
+    "Sign In": "Вход",
+    "Sign Up": "Зарегистрируйтесь",
+    "Sign In Auth": "Логин",
+    "Sign Up Auth": "Регистрация",
+    "isNotAuth": "У вас нет аккаунта?",
+    "isAuth": "У вас есть аккаунт?"
+  },
   "LocaleSwitcher": {
     "label": "Изменить язык",
     "locale": "{locale, select, ru {ru рус} en {angl англ} other {другой}}"
