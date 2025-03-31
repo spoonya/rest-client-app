@@ -1,6 +1,5 @@
+import { Container } from '@/components/ui';
 import { cn } from '@/utils';
-
-import { Container } from '../../ui';
 
 interface FooterProps {
   className?: string;

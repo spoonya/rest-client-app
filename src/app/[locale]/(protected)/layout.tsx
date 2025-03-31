@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { Footer, Header } from '@/components/shared';
 import { isAuthenticated } from '@/lib';
 import { AppRoutes } from '@/services';
+import { cn } from '@/utils';
 
 export default function ProtectedLayout({
   children,
@@ -14,7 +15,7 @@ export default function ProtectedLayout({
   if (!user) redirect(AppRoutes.SIGN_IN);
 
   return (
-    <main className="min-h-screen">
+    <main className={cn('min-h-screen', 'page')}>
       <Header />
       {children}
       <Footer />

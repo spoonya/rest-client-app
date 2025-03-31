@@ -3,12 +3,12 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+import { Container, Logo } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { AppRoutes } from '@/services';
 import { cn } from '@/utils';
 import { Button } from '@heroui/react';
 
-import { Container, Logo } from '../../ui';
 import { LocaleSwitcher } from './LocaleSwitcher';
 
 interface HeaderProsp {

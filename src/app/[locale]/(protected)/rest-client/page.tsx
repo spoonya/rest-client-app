@@ -1,3 +1,10 @@
+import { Editor } from '@/components/shared';
+import { Container } from '@/components/ui';
+
 export default function RestClient() {
-  return <div>RestClient</div>;
+  return (
+    <Container>
+      <Editor />
+    </Container>
+  );
 }
