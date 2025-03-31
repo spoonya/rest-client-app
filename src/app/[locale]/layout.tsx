@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-
+// import cn from 'classnames';
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import { JetBrains_Mono } from 'next/font/google';
 import { setRequestLocale } from 'next-intl/server';
@@ -8,6 +8,8 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { Providers } from '../providers';
+import { Header } from '@/components/common/Header';
+import { Footer } from '@/components/common/Footer';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -56,7 +58,13 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html className="h-full" lang={locale}>
       <body className={jetBrainsMono.className}>
         <Providers>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <div className='w-full h-screen flex flex-col justify-between'>
+            <Header />
+            {children}
+            <Footer/>
+            </div>
+            </NextIntlClientProvider>
         </Providers>
       </body>
     </html>
