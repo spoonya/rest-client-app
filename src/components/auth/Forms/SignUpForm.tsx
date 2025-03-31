@@ -1,16 +1,18 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import { Input } from '@heroui/input';
 import { Button, Link } from '@heroui/react';
+import Image from 'next/image';
 
 export default function SignInForm() {
   const t = useTranslations('Auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const [isChecking, setIsChecking] = useState(true);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +27,31 @@ export default function SignInForm() {
       router.push('/');
     }
   };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      console.log('User data:', data);
+      if (data.user) {
+        router.replace('/');
+      } else {
+        setIsChecking(false);
+      }
+    };
+
+    checkUser();
+  }, [router]);
+
+  if (isChecking) {
+    return (
+      <Image
+        src="/loaders/Loader1.svg"
+        alt="Loading..."
+        width={100}
+        height={100}
+      />
+    );
+  }
 
   return (
     <form
