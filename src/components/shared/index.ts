@@ -6,4 +6,5 @@ export { Navigation } from './Navigation';
 export { PageLayout } from './PageLayout';
 export { Sidebar } from './Sidebar';
 export { Editor } from './Editor';
+export { Menu } from './Menu';
 export * from './forms';
