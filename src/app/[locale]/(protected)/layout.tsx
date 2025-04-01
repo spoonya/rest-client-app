@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/components';
+import { Footer, Header, Menu } from '@/components';
 import { cn } from '@/utils';
 
 export default function ProtectedLayout({
@@ -9,6 +9,7 @@ export default function ProtectedLayout({
   return (
     <main className={cn('min-h-screen', 'page')}>
       <Header />
+     <Menu/>
       {children}
       <Footer />
     </main>
