@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import {
   CodeGenPreview,
-  Editor,
   RequestPanel,
   RequestSearch,
+  ResponseViewer,
   Sidebar,
 } from '@/components';
 import { HttpMethod } from '@/types';
@@ -22,7 +22,7 @@ export default function RestClient() {
   return (
     <div className="w-full flex h-full">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full py-4 px-4 gap-4 flex flex-col">
         <RequestSearch
           method={method}
           setMethod={setMethod}
@@ -33,7 +33,7 @@ export default function RestClient() {
         <div className="flex h-full">
           <RequestPanel />
           <CodeGenPreview />
-          <Editor />
+          <ResponseViewer />
         </div>
       </div>
     </div>

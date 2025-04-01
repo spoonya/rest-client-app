@@ -3,15 +3,20 @@
 import React from 'react';
 
 import { jsonExample } from '@/data';
+import { EditorMode } from '@/types';
 import { cn } from '@/utils';
 import { Editor as MonacoEditor } from '@monaco-editor/react';
 
 import type * as monaco from 'monaco-editor';
-interface EditorProps {
+interface ResponseViewerProps {
   className?: string;
+  language?: EditorMode;
 }
 
-export const Editor = ({ className }: Readonly<EditorProps>) => {
+export const ResponseViewer = ({
+  className,
+  language = 'json',
+}: Readonly<ResponseViewerProps>) => {
   const [editorInstance, setEditorInstance] =
     React.useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 
@@ -52,13 +57,14 @@ export const Editor = ({ className }: Readonly<EditorProps>) => {
       onMount={handleEditorMount}
       height={'100%'}
       width={'100%'}
-      language="json"
+      language={language}
       options={{
         automaticLayout: true,
         minimap: { enabled: false },
         formatOnPaste: true,
         readOnly: true,
         fontFamily: 'JetBrains Mono',
+        scrollBeyondLastLine: false,
       }}
     />
   );

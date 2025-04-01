@@ -27,8 +27,9 @@ export const RequestSearch = ({
   <div className={cn(className)}>
     <div className="flex gap-2 items-center">
       <Select
+        classNames={{ trigger: 'bg-default-50 border-1 border-gray-200' }}
         aria-label="Select HTTP method"
-        className="w-32"
+        className="w-40"
         items={requestMethods}
         selectedKeys={[method]}
         onChange={(e) => setMethod(e.target.value as HttpMethod)}
@@ -41,13 +42,18 @@ export const RequestSearch = ({
         ))}
       </Select>
       <Input
+        classNames={{
+          inputWrapper: 'bg-default-50 border-1 border-gray-200',
+        }}
         aria-label="Request URL"
         placeholder="Enter endpoint URL"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         fullWidth
       />
-      <Button onPress={onSubmit}>Submit</Button>
+      <Button color="primary" onPress={onSubmit}>
+        Submit
+      </Button>
     </div>
   </div>
 );

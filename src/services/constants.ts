@@ -35,4 +35,5 @@ export const requestMethods = [
 
 export enum requestTabs {
   HEADERS = 'Headers',
+  BODY = 'Body',
 }
