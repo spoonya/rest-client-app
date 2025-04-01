@@ -10,6 +10,11 @@
     "Sign Out": "Выйти",
     "pathnames": "Pathnames"
   },
+  "Menu": {
+    "Rest Client": "Клиент Rest",
+    "History": "История",
+    "Variables": "Переменные"
+  },
   "Auth": {
     "Sign In": "Вход",
     "Sign Up": "Зарегистрируйтесь",
