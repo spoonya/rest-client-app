@@ -8,6 +8,7 @@ export default function PublicLayout({
   return (
     <main className="min-h-screen">
       <Header />
+
       {children}
       <Footer />
     </main>

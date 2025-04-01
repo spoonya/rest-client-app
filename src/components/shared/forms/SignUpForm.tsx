@@ -102,7 +102,7 @@ export default function SignUpForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-emerald-200 dark:bg-zinc-900 rounded-xl shadow-xl p-8 w-full max-w-md mx-auto space-y-6"
+      className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-8 w-full max-w-md mx-auto space-y-6"
     >
       <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-white">
         {t('Sign Up Auth')}
