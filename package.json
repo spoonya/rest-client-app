@@ -27,11 +27,13 @@
     "next": "15.2.4",
     "next-intl": "^4.0.2",
     "postman-code-generators": "^2.0.0",
+    "postman-collection": "^5.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.55.0",
     "react-redux": "^9.2.0",
     "tailwind-merge": "^3.0.2",
+    "uuid": "^11.1.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -40,6 +42,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^20",
+    "@types/postman-collection": "^3.5.10",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
