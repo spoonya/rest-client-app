@@ -1,4 +1,3 @@
-export * from './forms';
 export { LocaleSwitcher } from './LocaleSwitcher';
 export { DeveloperItem } from './DeveloperItem';
 export { Header } from './Header';
@@ -6,6 +5,10 @@ export { Footer } from './Footer';
 export { Navigation } from './Navigation';
 export { PageLayout } from './PageLayout';
 export { Sidebar } from './Sidebar';
+export { Editor } from './Editor';
+export { Menu } from './Menu';
+export * from './forms';
+
 export { ResponseViewer } from './ResponseViewer';
 export { CodeGenPreview } from './CodeGenPreview';
 export { RequestPanel } from './RequestPanel';

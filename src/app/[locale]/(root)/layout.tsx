@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/components';
+
 
 export default function PublicLayout({
   children,
@@ -6,10 +6,8 @@ export default function PublicLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen">
-      <Header />
+    <div className="min-h-screen">
       {children}
-      <Footer />
-    </main>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 
 import { AppRoutes } from '@/services';
 import {
@@ -15,11 +15,19 @@ import {
 
 import { Logo } from '../ui';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { useAuth } from '@/hooks';
+import { supabase } from '@/lib';
+import { AuthButtons } from './AuthButtons';
 
 export function Navigation() {
   const t = useTranslations('Navigation');
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
+  const user = useAuth();
+  const router = useRouter()
+  const handleLogout = () => {
+    supabase.auth.signOut();
+    router.replace(AppRoutes.HOME)
+  }
 
   return (
     <Navbar>
@@ -34,23 +42,34 @@ export function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="lg:flex">
-          <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
-        </NavbarItem>
-        <NavbarItem>
+        {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_UP).slice(1) || user)? (
+          <><NavbarItem>
+            <Link href={AppRoutes.HOME}>{t('home')}</Link>
+          </NavbarItem><NavbarItem>
           <Button
             as={Link}
             color="primary"
-            href={AppRoutes.SIGN_UP}
             variant="flat"
+            onPress={handleLogout}
           >
-            {t('Sign Up')}
+            {t('Sign Out')}
           </Button>
-        </NavbarItem>
-        {segment === AppRoutes.AUTH && (
-          <NavbarItem>
-            <Link href="#">{t('Sign Out')}</Link>
-          </NavbarItem>
+            </NavbarItem></>
+        ): 
+       (<AuthButtons className='bg-inherit'/>
+      //  <>
+      //  <NavbarItem className="lg:flex">
+      //   <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
+      // </NavbarItem><NavbarItem>
+      //     <Button
+      //       as={Link}
+      //       color="primary"
+      //       href={AppRoutes.SIGN_UP}
+      //       variant="flat"
+      //     >
+      //       {t('Sign Up')}
+      //     </Button>
+      //   </NavbarItem></>
         )}
       </NavbarContent>
     </Navbar>
