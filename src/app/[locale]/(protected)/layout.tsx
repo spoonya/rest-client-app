@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ export default function ProtectedLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -42,4 +44,5 @@ export default function ProtectedLayout({
   }
 
   return <main className={cn('min-h-screen', 'page')}>{children}</main>;
+
 }
