@@ -1,18 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
+import { Input } from '@heroui/input';
+import { Button, Link } from '@heroui/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
-import { supabase } from '@/lib';
-import { Button, Input, Link } from '@heroui/react';
-
-export function SignInForm() {
+export default function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
   const t = useTranslations('Auth');
+  const tSchema = useTranslations('AuthSchema');
   const [isChecking, setIsChecking] = useState(true);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -32,7 +33,7 @@ export function SignInForm() {
   useEffect(() => {
     const checkUser = async () => {
       const { data } = await supabase.auth.getUser();
-      console.log('User data:', data);
+      console.log(data);
       if (data.user) {
         router.replace('/');
       } else {
@@ -56,17 +57,19 @@ export function SignInForm() {
   return (
     <form
       onSubmit={handleLogin}
-      className="bg-gray-50 dark:bg-zinc-900 rounded-xl shadow-xl p-8 w-full max-w-md mx-auto space-y-6"
+      noValidate
+      className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-8 w-full max-w-md mx-auto space-y-6"
     >
       <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-white">
         {t('Sign In Auth')}
       </h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-8 ">
         <Input
           label="Email"
           type="email"
           value={email}
+          errorMessage={tSchema('email')}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full"
         />
