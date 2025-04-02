@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { Footer, Header, Menu } from '@/components';
+
 import { cn } from '@/utils';
 import Image from 'next/image';
 
@@ -41,12 +41,5 @@ export default function ProtectedLayout({
     );
   }
 
-  return (
-    <main className={cn('min-h-screen', 'page')}>
-      <Header />
-      <Menu />
-      {children}
-      <Footer />
-    </main>
-  );
+  return <main className={cn('min-h-screen', 'page')}>{children}</main>;
 }
