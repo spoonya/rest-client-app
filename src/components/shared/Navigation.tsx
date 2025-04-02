@@ -15,11 +15,12 @@ import {
 
 import { Logo } from '../ui';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { useAuth } from '@/hooks';
 
 export function Navigation() {
   const t = useTranslations('Navigation');
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
+  const user = useAuth();
 
   return (
     <Navbar>
@@ -34,10 +35,23 @@ export function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="lg:flex">
-          <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
-        </NavbarItem>
-        <NavbarItem>
+        {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_IN).slice(1) || user)? (
+          <><NavbarItem>
+            <Link href={AppRoutes.HOME}>{t('home')}</Link>
+          </NavbarItem><NavbarItem>
+          <Button
+            as={Link}
+            color="primary"
+            href='#'
+            variant="flat"
+          >
+            {t('Sign Out')}
+          </Button>
+            </NavbarItem></>
+        ): 
+       (<><NavbarItem className="lg:flex">
+        <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
+      </NavbarItem><NavbarItem>
           <Button
             as={Link}
             color="primary"
@@ -46,11 +60,7 @@ export function Navigation() {
           >
             {t('Sign Up')}
           </Button>
-        </NavbarItem>
-        {segment === AppRoutes.AUTH && (
-          <NavbarItem>
-            <Link href="#">{t('Sign Out')}</Link>
-          </NavbarItem>
+        </NavbarItem></>
         )}
       </NavbarContent>
     </Navbar>
