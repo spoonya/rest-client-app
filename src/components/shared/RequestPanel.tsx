@@ -121,6 +121,7 @@ export const RequestPanel = ({
           <div className="flex flex-col gap-3 rounded-medium bg-content1 shadow-sm overflow-hidden">
             <div className="flex justify-between items-center px-4 pt-3">
               <Select
+                aria-label="Select body format"
                 size="sm"
                 className="w-32"
                 selectedKeys={[bodyFormat]}

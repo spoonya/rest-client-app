@@ -68,6 +68,7 @@ export const CodeGenPreview = ({
         </h2>
         <div className="flex gap-2">
           <Select
+            aria-label="Select language"
             size="sm"
             className="w-[200px]"
             selectedKeys={[selected]}
@@ -105,9 +106,7 @@ export const CodeGenPreview = ({
             Generating...
           </div>
         ) : error ? (
-          <div className="text-destructive font-mono text-sm">
-            Error: {error}
-          </div>
+          <div className="text-destructive text-sm">Error: {error}</div>
         ) : (
           <Snippet
             color="primary"

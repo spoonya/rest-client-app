@@ -40,6 +40,11 @@ export enum requestTabs {
   BODY = 'Body',
 }
 
+export enum ResponseTabs {
+  DETAILS = 'Request',
+  BODY = 'Response',
+}
+
 export const editorModes: EditorModeOption[] = [
   {
     value: 'json',
