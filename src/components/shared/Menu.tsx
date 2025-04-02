@@ -8,13 +8,15 @@ import {
   NavbarItem,
 } from '@heroui/react';
 import { protected_menu } from '@/data';
+import { useAuth } from '@/hooks';
 
 export function Menu() {
   const t = useTranslations('Menu');
+  const user = useAuth();
 
   return (
     <div className='flex items-center justify-center'>
-    <Navbar className='px-10 max-w-lg rounded-xl bg-slate-50'>
+    {user && (<Navbar className='px-10 max-w-lg rounded-xl bg-slate-50'>
       <NavbarContent className='w-full' justify='center'>
       {protected_menu.map((item)=> (
         <NavbarItem key={item.name} className='px-5'>
@@ -22,7 +24,7 @@ export function Menu() {
         </NavbarItem>
       ))}
       </NavbarContent>
-    </Navbar>
+    </Navbar>)}
     </div>
   );
 }
