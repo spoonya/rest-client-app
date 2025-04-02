@@ -16,7 +16,7 @@ export const DeveloperItem = ({ developer }: FooterProps) => {
       }}
       description={
         <Link isExternal href={developer.git} size="sm">
-          {developer.git}
+          {developer.gitName}
         </Link>
       }
       name={developer.name}
