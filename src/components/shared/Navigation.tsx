@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 
 import { AppRoutes } from '@/services';
 import {
@@ -16,11 +16,17 @@ import {
 import { Logo } from '../ui';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { useAuth } from '@/hooks';
+import { supabase } from '@/lib';
 
 export function Navigation() {
   const t = useTranslations('Navigation');
   const segment = useSelectedLayoutSegment();
   const user = useAuth();
+  const router = useRouter()
+  const handleLogout = () => {
+    supabase.auth.signOut();
+    router.replace(AppRoutes.HOME)
+  }
 
   return (
     <Navbar>
@@ -42,8 +48,8 @@ export function Navigation() {
           <Button
             as={Link}
             color="primary"
-            href='#'
             variant="flat"
+            onPress={handleLogout}
           >
             {t('Sign Out')}
           </Button>
