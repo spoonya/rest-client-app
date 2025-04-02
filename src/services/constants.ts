@@ -1,3 +1,5 @@
+import { EditorModeOption } from '@/types';
+
 export enum AppRoutes {
   HOME = '/',
   HISTORY = '/history',
@@ -37,3 +39,14 @@ export enum requestTabs {
   HEADERS = 'Headers',
   BODY = 'Body',
 }
+
+export const editorModes: EditorModeOption[] = [
+  {
+    value: 'json',
+    label: 'JSON',
+  },
+  {
+    value: 'plaintext',
+    label: 'Raw',
+  },
+];

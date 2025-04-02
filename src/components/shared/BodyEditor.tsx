@@ -43,7 +43,7 @@ export const BodyEditor = ({
       editorInstance.setValue(value);
       if (language === 'json') formatDocument();
     }
-  }, [value, editorInstance, language]);
+  }, [value, editorInstance]);
 
   const handleEditorChange = (newValue?: string) => {
     onChange?.(newValue || '');
@@ -70,6 +70,7 @@ export const BodyEditor = ({
           formatOnPaste: true,
           fontFamily: 'JetBrains Mono',
           scrollBeyondLastLine: false,
+          wordBasedSuggestions: 'off',
         }}
       />
     </div>
