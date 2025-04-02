@@ -33,7 +33,7 @@ export default function SignInForm() {
   useEffect(() => {
     const checkUser = async () => {
       const { data } = await supabase.auth.getUser();
-      console.log(data);
+
       if (data.user) {
         router.replace('/');
       } else {
