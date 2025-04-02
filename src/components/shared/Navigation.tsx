@@ -17,6 +17,7 @@ import { Logo } from '../ui';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { useAuth } from '@/hooks';
 import { supabase } from '@/lib';
+import { AuthButtons } from './AuthButtons';
 
 export function Navigation() {
   const t = useTranslations('Navigation');
@@ -41,7 +42,7 @@ export function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_IN).slice(1) || user)? (
+        {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_UP).slice(1) || user)? (
           <><NavbarItem>
             <Link href={AppRoutes.HOME}>{t('home')}</Link>
           </NavbarItem><NavbarItem>
@@ -55,18 +56,20 @@ export function Navigation() {
           </Button>
             </NavbarItem></>
         ): 
-       (<><NavbarItem className="lg:flex">
-        <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
-      </NavbarItem><NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            href={AppRoutes.SIGN_UP}
-            variant="flat"
-          >
-            {t('Sign Up')}
-          </Button>
-        </NavbarItem></>
+       (<AuthButtons className='bg-inherit'/>
+      //  <>
+      //  <NavbarItem className="lg:flex">
+      //   <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
+      // </NavbarItem><NavbarItem>
+      //     <Button
+      //       as={Link}
+      //       color="primary"
+      //       href={AppRoutes.SIGN_UP}
+      //       variant="flat"
+      //     >
+      //       {t('Sign Up')}
+      //     </Button>
+      //   </NavbarItem></>
         )}
       </NavbarContent>
     </Navbar>
