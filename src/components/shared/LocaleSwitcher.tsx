@@ -35,7 +35,7 @@ export const LocaleSwitcher = ({}: Readonly<LocaleSwitcherProps>) => {
       className="max-w-lg"
       defaultSelectedKeys={[currentLocale]}
       label={t('label')}
-      labelPlacement='outside-left'
+      labelPlacement="outside-left"
       placeholder="Select lang"
     >
       {routing.locales.map((cur) => (

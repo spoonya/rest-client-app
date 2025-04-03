@@ -15,10 +15,11 @@ export function PageLayout({ children, title, userName }: Props) {
         <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
           {title}
         </h1>
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">{userName}</h1>
-        </div>
-        <div className="mt-6 text-gray-400 md:text-lg">{children}</div>
-     
+        <h1 className="text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+          {userName}
+        </h1>
+      </div>
+      <div className="mt-6 text-gray-400 md:text-lg">{children}</div>
     </div>
   );
 }

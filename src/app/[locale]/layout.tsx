@@ -10,7 +10,6 @@ import { ReactNode } from 'react';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from '../providers';
-import { Footer, Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -47,12 +46,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <Providers>
           <NextIntlClientProvider>
             <div className="w-full h-screen flex flex-col justify-between">
-              <Header />
-                    <main className='h-full'>
-              
-                    {children}
-                    </main>
-                    <Footer />
+              {children}
             </div>
           </NextIntlClientProvider>
         </Providers>

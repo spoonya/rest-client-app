@@ -1,19 +1,19 @@
-
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-
-import { cn } from '@/utils';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import { Footer, Header } from '@/components';
+import { supabase } from '@/lib/supabase';
+import { AppRoutes } from '@/services';
+import { cn } from '@/utils';
 
 export default function ProtectedLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -21,7 +21,7 @@ export default function ProtectedLayout({
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
-        router.replace('/sign-in');
+        router.replace(AppRoutes.SIGN_IN);
       } else {
         setIsLoading(false);
       }
@@ -32,17 +32,22 @@ export default function ProtectedLayout({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <main className="flex justify-center items-center h-screen">
         <Image
           src="/loaders/Loader1.svg"
           alt="Loading..."
           width={100}
           height={100}
         />
-      </div>
+      </main>
     );
   }
 
-  return <main className={cn('min-h-screen', 'page')}>{children}</main>;
-
+  return (
+    <main className={cn('min-h-screen h-screen', 'page')}>
+      <Header />
+      {children}
+      <Footer />
+    </main>
+  );
 }

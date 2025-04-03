@@ -1,11 +1,14 @@
 'use client';
 
-import { HeroUIProvider } from '@heroui/react';
-import {useRouter} from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-declare module "@react-types/shared" {
+import { HeroUIProvider } from '@heroui/react';
+
+declare module '@react-types/shared' {
   interface RouterConfig {
-    routerOptions: NonNullable<Parameters<ReturnType<typeof useRouter>["push"]>[1]>;
+    routerOptions: NonNullable<
+      Parameters<ReturnType<typeof useRouter>['push']>[1]
+    >;
   }
 }
 

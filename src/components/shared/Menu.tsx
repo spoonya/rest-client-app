@@ -8,18 +8,17 @@ export function Menu() {
   const t = useTranslations('Menu');
 
   return (
-
-    <div className='flex items-center justify-center'>
-      <Navbar className='px-10 max-w-lg rounded-xl bg-slate-50'>
-      <NavbarContent className='w-full' justify='center'>
-      {protected_menu.map((item)=> (
-        <NavbarItem key={item.name} className='px-5'>
-          <Link href={item.link}>{t(item.name)}</Link>
-        </NavbarItem>
-      ))}
-      </NavbarContent>
-    </Navbar>
-    {/* {user && (<Navbar className='px-10 max-w-lg rounded-xl bg-slate-50'>
+    <div className="flex items-center justify-center">
+      <Navbar className="px-10 max-w-lg rounded-xl bg-slate-50">
+        <NavbarContent className="w-full" justify="center">
+          {protected_menu.map((item) => (
+            <NavbarItem key={item.name} className="px-5">
+              <Link href={item.link}>{t(item.name)}</Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+      </Navbar>
+      {/* {user && (<Navbar className='px-10 max-w-lg rounded-xl bg-slate-50'>
       <NavbarContent className='w-full' justify='center'>
       {protected_menu.map((item)=> (
         <NavbarItem key={item.name} className='px-5'>
@@ -28,7 +27,6 @@ export function Menu() {
       ))}
       </NavbarContent>
     </Navbar>)} */}
-
     </div>
   );
 }

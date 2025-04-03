@@ -23,11 +23,11 @@ export function Navigation() {
   const t = useTranslations('Navigation');
   const segment = useSelectedLayoutSegment();
   const user = useAuth();
-  const router = useRouter()
+  const router = useRouter();
   const handleLogout = () => {
     supabase.auth.signOut();
-    router.replace(AppRoutes.HOME)
-  }
+    router.replace(AppRoutes.HOME);
+  };
 
   return (
     <Navbar>
@@ -42,34 +42,39 @@ export function Navigation() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_UP).slice(1) || user)? (
-          <><NavbarItem>
-            <Link href={AppRoutes.HOME}>{t('home')}</Link>
-          </NavbarItem><NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            variant="flat"
-            onPress={handleLogout}
-          >
-            {t('Sign Out')}
-          </Button>
-            </NavbarItem></>
-        ): 
-       (<AuthButtons className='bg-inherit'/>
-      //  <>
-      //  <NavbarItem className="lg:flex">
-      //   <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
-      // </NavbarItem><NavbarItem>
-      //     <Button
-      //       as={Link}
-      //       color="primary"
-      //       href={AppRoutes.SIGN_UP}
-      //       variant="flat"
-      //     >
-      //       {t('Sign Up')}
-      //     </Button>
-      //   </NavbarItem></>
+        {segment === AppRoutes.SIGN_IN.slice(1) ||
+        segment === AppRoutes.SIGN_UP.slice(1) ||
+        user ? (
+          <>
+            <NavbarItem>
+              <Link href={AppRoutes.HOME}>{t('home')}</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                as={Link}
+                color="primary"
+                variant="flat"
+                onPress={handleLogout}
+              >
+                {t('Sign Out')}
+              </Button>
+            </NavbarItem>
+          </>
+        ) : (
+          <AuthButtons className="bg-inherit" />
+          //  <>
+          //  <NavbarItem className="lg:flex">
+          //   <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
+          // </NavbarItem><NavbarItem>
+          //     <Button
+          //       as={Link}
+          //       color="primary"
+          //       href={AppRoutes.SIGN_UP}
+          //       variant="flat"
+          //     >
+          //       {t('Sign Up')}
+          //     </Button>
+          //   </NavbarItem></>
         )}
       </NavbarContent>
     </Navbar>
