@@ -4,10 +4,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Footer, Header } from '@/components';
+import { DefaultLayout } from '@/layouts';
 import { supabase } from '@/lib/supabase';
 import { AppRoutes } from '@/services';
-import { cn } from '@/utils';
 
 export default function ProtectedLayout({
   children,
@@ -44,10 +43,8 @@ export default function ProtectedLayout({
   }
 
   return (
-    <main className={cn('min-h-screen h-screen', 'page')}>
-      <Header />
+    <DefaultLayout className="max-h-screen h-screen flex flex-col justify-between">
       {children}
-      <Footer />
-    </main>
+    </DefaultLayout>
   );
 }
