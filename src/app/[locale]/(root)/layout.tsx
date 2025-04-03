@@ -1,15 +1,9 @@
-import { Footer, Header } from '@/components';
+import { DefaultLayout } from '@/layouts';
 
 export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main className="min-h-screen">
-      <Header />
-      {children}
-      <Footer />
-    </main>
-  );
+  return <DefaultLayout>{children}</DefaultLayout>;
 }

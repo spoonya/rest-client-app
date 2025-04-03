@@ -18,6 +18,7 @@ interface ResponseViewerProps {
   headers?: Array<{ key: string; value: string }>;
   responseBody?: string;
   requestMethod?: string;
+  error?: string;
 }
 
 export const ResponseViewer = ({
@@ -28,6 +29,7 @@ export const ResponseViewer = ({
   headers = [],
   responseBody = jsonExample,
   requestMethod = 'GET',
+  error = '',
 }: Readonly<ResponseViewerProps>) => {
   const [editorInstance, setEditorInstance] =
     React.useState<monaco.editor.IStandaloneCodeEditor | null>(null);
@@ -64,7 +66,7 @@ export const ResponseViewer = ({
     setEditorInstance(editor);
   };
 
-  const detailsTabTitle = `${ResponseTabs.DETAILS} ${requestMethod} `;
+  const detailsTabTitle = `${ResponseTabs.DETAILS} ${requestMethod}`;
   const bodyTabTitle = `${ResponseTabs.BODY}${
     statusCode ? ` (${statusCode})` : ''
   }`;
@@ -76,6 +78,9 @@ export const ResponseViewer = ({
         'flex flex-col gap-2 p-4 bg-default-50 rounded-xl shadow-sm border-1 border-gray-200 w-full'
       )}
     >
+      {error && (
+        <div className="bg-red-100 text-red-800 rounded p-2">{error}</div>
+      )}
       <Tabs
         selectedKey={activeTab}
         onSelectionChange={(key) => setActiveTab(key as ResponseTabs)}
@@ -87,12 +92,11 @@ export const ResponseViewer = ({
               <div className="flex flex-col gap-2">
                 <h3 className="font-semibold">Status</h3>
                 <div className="flex gap-2 items-center">
-                  {statusCode && (
+                  {statusCode ? (
                     <span className="px-2 py-1 bg-success-100 text-success-800 rounded-md text-sm">
                       {statusCode} {statusText}
                     </span>
-                  )}
-                  {!statusCode && (
+                  ) : (
                     <span className="text-foreground/50">
                       No status available
                     </span>
@@ -128,7 +132,7 @@ export const ResponseViewer = ({
         </Tab>
         <Tab key={ResponseTabs.BODY} title={bodyTabTitle}>
           <div className="flex flex-col gap-3 rounded-medium bg-content1 shadow-sm overflow-hidden">
-            <div className="h-[500px]">
+            <div className="h-[700px]">
               <MonacoEditor
                 className="pr-5 pt-5 pb-5"
                 onMount={handleEditorMount}
@@ -139,8 +143,11 @@ export const ResponseViewer = ({
                   automaticLayout: true,
                   minimap: { enabled: false },
                   readOnly: true,
+                  tabSize: 2,
+                  insertSpaces: true,
                   fontFamily: 'JetBrains Mono',
                   scrollBeyondLastLine: false,
+                  wordBasedSuggestions: 'off',
                 }}
               />
             </div>
