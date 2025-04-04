@@ -23,7 +23,7 @@ export const RequestSearch = ({
   setMethod,
   setUrl,
   onSubmit,
-}: RequestSearchProps) => (
+}: Readonly<RequestSearchProps>) => (
   <div className={cn(className)}>
     <div className="flex gap-2 items-center">
       <Select

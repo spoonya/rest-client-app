@@ -70,6 +70,7 @@ export const CodeGenPreview = ({
           <Select
             aria-label="Select language"
             size="sm"
+            classNames={{ trigger: 'bg-white border-1 border-gray-200' }}
             className="w-[200px]"
             selectedKeys={[selected]}
             disallowEmptySelection

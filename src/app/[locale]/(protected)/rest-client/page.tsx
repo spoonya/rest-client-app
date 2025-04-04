@@ -10,18 +10,28 @@ import {
   ResponseViewer,
   Sidebar,
 } from '@/components';
-import { HttpMethod, KeyValue } from '@/types';
+import { useRequestConfig, useRequestExecutor } from '@/hooks';
+import { KeyValue } from '@/types';
 
 export default function RestClient() {
-  const [method, setMethod] = useState<HttpMethod>('GET');
-  const [url, setUrl] = useState('');
+  const requestConfig = useRequestConfig({
+    method: 'GET',
+    url: 'https://pokeapi.co/api/v2/pokemon/',
+    body: '',
+  });
+
+  const { execute, response, error } = useRequestExecutor();
   const [headers, setHeaders] = useState<KeyValue[]>([
     { id: uuidv4(), key: '', value: '' },
   ]);
-  const [body, setBody] = useState('');
 
   const handleSubmit = () => {
-    console.log('Submitted:', { method, url });
+    execute(
+      requestConfig.method,
+      requestConfig.url,
+      headers,
+      requestConfig.body
+    );
   };
 
   return (
@@ -29,21 +39,28 @@ export default function RestClient() {
       <Sidebar />
       <div className="w-full py-4 px-4 gap-4 flex flex-col">
         <RequestSearch
-          method={method}
-          setMethod={setMethod}
-          url={url}
-          setUrl={setUrl}
+          method={requestConfig.method}
+          setMethod={requestConfig.setMethod}
+          url={requestConfig.url}
+          setUrl={requestConfig.setUrl}
           onSubmit={handleSubmit}
         />
         <div className="flex h-full gap-2">
           <RequestPanel
+            body={requestConfig.body}
+            onBodyChange={requestConfig.setBody}
             headers={headers}
             onHeadersChange={setHeaders}
-            body={body}
-            onBodyChange={setBody}
           />
           <CodeGenPreview />
-          <ResponseViewer />
+          <ResponseViewer
+            responseBody={response?.body}
+            statusCode={response?.statusCode}
+            statusText={response?.statusText}
+            headers={response?.headers}
+            requestMethod={requestConfig.method}
+            error={error}
+          />
         </div>
       </div>
     </div>
