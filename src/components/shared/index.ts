@@ -14,3 +14,5 @@ export { RequestSearch } from './RequestSearch';
 export { RequestKeyValueItem } from './RequestKeyValueItem';
 export { BodyEditor } from './BodyEditor';
 export { AuthButtons } from './AuthButtons';
+export { BodyTab } from './BodyTab';
+export { HeadersTab } from './HeadersTab';

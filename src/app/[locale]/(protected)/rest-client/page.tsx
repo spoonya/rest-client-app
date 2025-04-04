@@ -54,10 +54,10 @@ export default function RestClient() {
           />
           <CodeGenPreview />
           <ResponseViewer
-            responseBody={response?.body || ''}
-            statusCode={response?.statusCode || 200}
-            statusText={response?.statusText || ''}
-            headers={response?.headers || []}
+            responseBody={response?.body}
+            statusCode={response?.statusCode}
+            statusText={response?.statusText}
+            headers={response?.headers}
             requestMethod={requestConfig.method}
             error={error}
           />
