@@ -1,0 +1,45 @@
+'use client';
+
+interface ResponseDetailsTabProps {
+  statusCode?: number;
+  statusText?: string;
+  headers: Array<{ key: string; value: string }>;
+}
+
+export const ResponseDetailsTab = ({
+  statusCode,
+  statusText,
+  headers,
+}: ResponseDetailsTabProps) => (
+  <div className="flex flex-col gap-3 rounded-medium bg-content1 p-3 shadow-sm">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <h3 className="font-semibold">Status</h3>
+        <div className="flex gap-2 items-center">
+          {statusCode ? (
+            <span className="px-2 py-1 bg-success-100 text-success-800 rounded-md text-sm">
+              {statusCode} {statusText}
+            </span>
+          ) : (
+            <span className="text-foreground/50">No status available</span>
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h3 className="font-semibold">Headers</h3>
+        {headers.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            {headers.map((header, index) => (
+              <div key={index} className="flex gap-4 items-center text-sm">
+                <span className="text-foreground/70">{header.key}:</span>
+                <span className="text-foreground/90">{header.value}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <span className="text-foreground/50">No headers received</span>
+        )}
+      </div>
+    </div>
+  </div>
+);

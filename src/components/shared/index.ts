@@ -16,3 +16,5 @@ export { BodyEditor } from './BodyEditor';
 export { AuthButtons } from './AuthButtons';
 export { BodyTab } from './BodyTab';
 export { HeadersTab } from './HeadersTab';
+export { ResponseDetailsTab } from './ResponseDetailsTab';
+export { ResponseBodyTab } from './ResponseBodyTab';
