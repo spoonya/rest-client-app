@@ -130,27 +130,25 @@ export const ResponseViewer = ({
             </div>
           </div>
         </Tab>
-        <Tab key={ResponseTabs.BODY} title={bodyTabTitle}>
-          <div className="flex flex-col gap-3 rounded-medium bg-content1 shadow-sm overflow-hidden">
-            <div className="h-[700px]">
-              <MonacoEditor
-                className="pr-5 pt-5 pb-5"
-                onMount={handleEditorMount}
-                height="100%"
-                width="100%"
-                language={language}
-                options={{
-                  automaticLayout: true,
-                  minimap: { enabled: false },
-                  readOnly: true,
-                  tabSize: 2,
-                  insertSpaces: true,
-                  fontFamily: 'JetBrains Mono',
-                  scrollBeyondLastLine: false,
-                  wordBasedSuggestions: 'off',
-                }}
-              />
-            </div>
+        <Tab key={ResponseTabs.BODY} title={bodyTabTitle} className="flex-1">
+          <div className="flex flex-col gap-3 rounded-medium bg-content1 shadow-sm overflow-hidden h-full">
+            <MonacoEditor
+              className="pr-5 pt-5 pb-5"
+              onMount={handleEditorMount}
+              height="100%"
+              width="100%"
+              language={language}
+              options={{
+                automaticLayout: true,
+                minimap: { enabled: false },
+                readOnly: true,
+                tabSize: 2,
+                insertSpaces: true,
+                fontFamily: 'JetBrains Mono',
+                scrollBeyondLastLine: false,
+                wordBasedSuggestions: 'off',
+              }}
+            />
           </div>
         </Tab>
       </Tabs>
