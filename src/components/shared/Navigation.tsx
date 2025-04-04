@@ -5,7 +5,6 @@ import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 
 import { AppRoutes } from '@/services';
 import {
-  Button,
   Link,
   Navbar,
   NavbarBrand,
@@ -30,46 +29,39 @@ export function Navigation() {
   }
 
   return (
-    <Navbar>
+    <Navbar className='bg-inherit !text-inherit'>
       <NavbarBrand className="w-40">
         <Link href={AppRoutes.HOME}>
           <Logo />
         </Link>
       </NavbarBrand>
       <NavbarContent>
-        <NavbarItem className="w-full">
+        <NavbarItem className="w-full" >
           <LocaleSwitcher />
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className='text-inherit'>
         {(segment === (AppRoutes.SIGN_IN).slice(1) || segment === (AppRoutes.SIGN_UP).slice(1) || user)? (
-          <><NavbarItem>
-            <Link href={AppRoutes.HOME}>{t('home')}</Link>
-          </NavbarItem><NavbarItem>
-          <Button
+          <><NavbarItem className='shadow-lg shadow-slate-700 px-3 py-2 hover:bg-black hover:shadow-indigo-600 hover:cursor-pointer duration-300'>
+            <Link href={AppRoutes.HOME} className='text-blue-800 hover:text-sky-50'>{t('home')}</Link>
+          </NavbarItem><NavbarItem className='shadow-lg shadow-slate-700 px-3 py-2 hover:bg-black hover:shadow-indigo-600 hover:cursor-pointer duration-300'>
+          <Link
+          className='text-blue-800 hover:text-sky-50'
+            onPress={handleLogout}
+          >
+            {t('Sign Out')}
+          </Link>
+          {/* <Button
             as={Link}
             color="primary"
             variant="flat"
             onPress={handleLogout}
           >
             {t('Sign Out')}
-          </Button>
+          </Button> */}
             </NavbarItem></>
         ): 
-       (<AuthButtons className='bg-inherit'/>
-      //  <>
-      //  <NavbarItem className="lg:flex">
-      //   <Link href={AppRoutes.SIGN_IN}>{t('Sign In')}</Link>
-      // </NavbarItem><NavbarItem>
-      //     <Button
-      //       as={Link}
-      //       color="primary"
-      //       href={AppRoutes.SIGN_UP}
-      //       variant="flat"
-      //     >
-      //       {t('Sign Up')}
-      //     </Button>
-      //   </NavbarItem></>
+       (<AuthButtons className='bg-inherit text-inherit'/>
         )}
       </NavbarContent>
     </Navbar>
