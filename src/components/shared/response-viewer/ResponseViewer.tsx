@@ -6,7 +6,7 @@ import { ResponseTabs } from '@/services';
 import { cn } from '@/utils';
 import { Tab, Tabs } from '@heroui/react';
 
-import { ResponseBodyTab, ResponseDetailsTab } from './';
+import { ResponseBodyTab, ResponseDetailsTab } from './parts';
 
 interface ResponseViewerProps {
   className?: string;

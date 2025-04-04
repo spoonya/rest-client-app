@@ -20,7 +20,7 @@ export const RequestKeyValueItem = ({
   index,
   updateItem,
   removeItem,
-}: RequestKeyValueItemProps) => (
+}: Readonly<RequestKeyValueItemProps>) => (
   <div className={cn('flex gap-2 items-center', className)}>
     <Input
       aria-label={`Item key ${index + 1}`}

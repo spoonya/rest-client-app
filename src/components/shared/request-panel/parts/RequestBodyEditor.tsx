@@ -7,7 +7,7 @@ import { cn } from '@/utils';
 import { Editor as MonacoEditor } from '@monaco-editor/react';
 
 import type * as monaco from 'monaco-editor';
-interface BodyEditorProps {
+interface RequestBodyEditorProps {
   className?: string;
   value?: string;
   language?: EditorMode;
@@ -15,13 +15,13 @@ interface BodyEditorProps {
   onMount?: (editor: monaco.editor.IStandaloneCodeEditor) => void;
 }
 
-export const BodyEditor = ({
+export const RequestBodyEditor = ({
   className,
   value = '',
   language = 'json',
   onChange,
   onMount,
-}: Readonly<BodyEditorProps>) => {
+}: Readonly<RequestBodyEditorProps>) => {
   const [editorInstance, setEditorInstance] =
     useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 

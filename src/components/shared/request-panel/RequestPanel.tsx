@@ -7,7 +7,7 @@ import { EditorMode, KeyValue } from '@/types';
 import { cn } from '@/utils';
 import { Tab, Tabs } from '@heroui/react';
 
-import { BodyTab, HeadersTab } from './';
+import { RequestBodyTab, RequestHeadersTab } from './parts';
 
 interface RequestPanelProps {
   className?: string;
@@ -23,7 +23,7 @@ export const RequestPanel = ({
   headers = [],
   onBodyChange,
   onHeadersChange,
-}: RequestPanelProps) => {
+}: Readonly<RequestPanelProps>) => {
   const [activeTab, setActiveTab] = useState<requestTabs>(requestTabs.HEADERS);
   const [bodyFormat, setBodyFormat] = useState<EditorMode>('json');
 
@@ -40,10 +40,10 @@ export const RequestPanel = ({
         variant="light"
       >
         <Tab key={requestTabs.HEADERS} title={requestTabs.HEADERS}>
-          <HeadersTab headers={headers} setHeaders={onHeadersChange} />
+          <RequestHeadersTab headers={headers} setHeaders={onHeadersChange} />
         </Tab>
         <Tab key={requestTabs.BODY} title={requestTabs.BODY}>
-          <BodyTab
+          <RequestBodyTab
             body={body}
             bodyFormat={bodyFormat}
             onBodyChange={onBodyChange}

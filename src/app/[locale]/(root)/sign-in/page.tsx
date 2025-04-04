@@ -1,4 +1,4 @@
-import SignInForm from '@/components/shared/forms/SignInForm';
+import { SignInForm } from '@/components';
 
 export default function SignInPage() {
   return (
