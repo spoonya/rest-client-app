@@ -15,7 +15,7 @@ interface HeaderProps {
 export const Footer = ({ className }: HeaderProps) => {
   return (
     <footer className={cn(className)}>
-      <div className="flex items-center justify-around py-2">
+      <div className="title flex items-center justify-around py-2">
         <Link href="https://github.com/spoonya/rest-client-app">GitHub</Link>
 
         <div className="text-center">
@@ -31,8 +31,8 @@ export const Footer = ({ className }: HeaderProps) => {
         </Link>
       </div>
       <hr />
-      <div className="flex flex-col items-center justify-center">
-        <p>developers</p>
+      <div className="flex flex-col items-center justify-center ">
+        <p className='title'>developers</p>
         <div className="flex flex-col items-center w-full gap-9 py-3">
           <div className="flex flex-wrap justify-center gap-6 px-40 sm:px-4">
             {developers.map((developer) => (
