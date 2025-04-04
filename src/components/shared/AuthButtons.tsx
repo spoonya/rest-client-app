@@ -9,15 +9,17 @@ import {
   Link,
 } from '@heroui/react';
 
+
+
 interface AuthButtonsProps {
   className?: string;
 }
 
-export function AuthButtons({className}:AuthButtonsProps) {
+export function AuthButtons({ className }: AuthButtonsProps) {
   const t = useTranslations('Navigation');
-  
 
   return (
+
     <nav className={cn(className, 'w-[200px]')}>
     <ul  className='flex items-center justify-between'>
 

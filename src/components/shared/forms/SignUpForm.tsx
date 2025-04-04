@@ -1,17 +1,18 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { supabase } from '@/lib/supabase';
 import { Input } from '@heroui/input';
 import { Button, Link } from '@heroui/react';
-import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-export default function SignUpForm() {
+export function SignUpForm() {
   const t = useTranslations('Auth');
   const tSchema = useTranslations('AuthSchema');
   const router = useRouter();

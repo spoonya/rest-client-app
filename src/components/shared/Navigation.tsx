@@ -22,11 +22,11 @@ export function Navigation() {
   const t = useTranslations('Navigation');
   const segment = useSelectedLayoutSegment();
   const user = useAuth();
-  const router = useRouter()
+  const router = useRouter();
   const handleLogout = () => {
     supabase.auth.signOut();
-    router.replace(AppRoutes.HOME)
-  }
+    router.replace(AppRoutes.HOME);
+  };
 
   return (
     <Navbar className='bg-inherit !text-inherit'>
@@ -62,6 +62,7 @@ export function Navigation() {
             </NavbarItem></>
         ): 
        (<AuthButtons className='bg-inherit text-inherit'/>
+
         )}
       </NavbarContent>
     </Navbar>

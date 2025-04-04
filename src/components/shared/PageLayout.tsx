@@ -19,7 +19,6 @@ export function PageLayout({ children, title, userName }: Props) {
         <h1 className="name text-3xl font-semibold leading-tight text-blue-800 tracking-tight md:text-5xl">{userName}</h1>
         </div>
         <div className="mt-10 text-gray-400 w-full md:text-lg">{children}</div>
-     
     </div>
   );
 }

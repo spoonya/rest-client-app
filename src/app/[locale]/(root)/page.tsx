@@ -2,8 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Menu, PageLayout } from '@/components';
+import { AuthButtons, Menu, PageLayout } from '@/components';
 import { useAuth } from '@/hooks';
+
 import { AuthButtons } from '@/components/shared/AuthButtons';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib';
@@ -16,6 +17,7 @@ export default function Home() {
   const name = user?.user_metadata.full_name;
   const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+
 
   useEffect(() => {
       const checkAuth = async () => {
@@ -44,11 +46,13 @@ export default function Home() {
    
   return (
     <PageLayout title={t('title')} userName={name}>
+
       <div className='w-full shadow-lg flex items-center justify-around py-10'>
 
          {( user)? (<Menu/>):
          (<AuthButtons className='z-0 rounded-2xl text-blue-800'/>)}
       </div>
+
     </PageLayout>
   );
 }

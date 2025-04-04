@@ -28,7 +28,6 @@ export function Menu() {
       ))}
       </NavbarContent>
     </Navbar>)} */}
-
     </div>
   );
 }

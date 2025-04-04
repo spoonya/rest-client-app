@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 // import { cn } from '@/utils';
-import {motion, useScroll, useTransform} from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { Navigation } from './Navigation';
 
@@ -14,6 +14,7 @@ export const Header = () => {
   const backgroundColor = useTransform(
     scrollY,
     [0, 0.5, 1],
+
     ["#E6E6FA", "#0f0", "#000"],
 
   )
@@ -43,5 +44,6 @@ export const Header = () => {
      >
         <Navigation />
       </motion.header>
+  
   );
 };

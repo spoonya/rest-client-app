@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
-import { Input } from '@heroui/input';
-import { Button, Link } from '@heroui/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function SignInForm() {
+import { supabase } from '@/lib/supabase';
+import { Input } from '@heroui/input';
+import { Button, Link } from '@heroui/react';
+
+export function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();

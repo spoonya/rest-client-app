@@ -37,7 +37,7 @@ export const LocaleSwitcher = ({className}: Readonly<LocaleSwitcherProps>) => {
       classNames={{label: 'text-inherit font-medium'}}
       defaultSelectedKeys={[currentLocale]}
       label={t('label')}
-      labelPlacement='outside-left'
+      labelPlacement="outside-left"
       placeholder="Select lang"
     >
       {routing.locales.map((cur) => (

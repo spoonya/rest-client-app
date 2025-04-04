@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-
-import { cn } from '@/utils';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import { DefaultLayout } from '@/layouts';
+import { supabase } from '@/lib/supabase';
+import { AppRoutes } from '@/services';
 
 export default function ProtectedLayout({
   children,
@@ -19,7 +20,7 @@ export default function ProtectedLayout({
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
-        router.replace('/sign-in');
+        router.replace(AppRoutes.SIGN_IN);
       } else {
         setIsLoading(false);
       }
@@ -30,16 +31,20 @@ export default function ProtectedLayout({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <main className="flex justify-center items-center h-screen">
         <Image
           src="/loaders/Loader1.svg"
           alt="Loading..."
           width={100}
           height={100}
         />
-      </div>
+      </main>
     );
   }
 
-  return <main className={cn('min-h-screen', 'page')}>{children}</main>;
+  return (
+    <DefaultLayout className="max-h-screen h-screen flex flex-col justify-between">
+      {children}
+    </DefaultLayout>
+  );
 }
