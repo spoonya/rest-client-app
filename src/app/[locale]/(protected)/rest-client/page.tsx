@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import {
   CodeGenPreview,
@@ -21,15 +20,13 @@ export default function RestClient() {
   });
 
   const { execute, response, error } = useRequestExecutor();
-  const [headers, setHeaders] = useState<KeyValue[]>([
-    { id: uuidv4(), key: '', value: '' },
-  ]);
+  const [headers, setHeaders] = useState<KeyValue[]>([]);
 
   const handleSubmit = () => {
     execute(
       requestConfig.method,
       requestConfig.url,
-      headers,
+      headers.filter((header) => header.key.trim() !== ''),
       requestConfig.body
     );
   };
@@ -52,7 +49,12 @@ export default function RestClient() {
             headers={headers}
             onHeadersChange={setHeaders}
           />
-          <CodeGenPreview />
+          <CodeGenPreview
+            method={requestConfig.method}
+            url={requestConfig.url}
+            headers={headers}
+            body={requestConfig.body}
+          />
           <ResponseViewer
             responseBody={response?.body}
             statusCode={response?.statusCode}

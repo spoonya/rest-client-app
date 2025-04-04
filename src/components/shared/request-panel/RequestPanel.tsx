@@ -31,7 +31,7 @@ export const RequestPanel = ({
     <div
       className={cn(
         className,
-        'flex flex-col gap-2 p-4 bg-default-50 rounded-xl shadow-sm border-1 border-gray-200 min-w-[450px]'
+        'flex flex-col gap-2 p-4 bg-default-50 rounded-xl shadow-sm border-1 border-gray-200 min-w-[450px] max-w-[450px]'
       )}
     >
       <Tabs

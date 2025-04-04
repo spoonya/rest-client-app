@@ -58,6 +58,7 @@ export const ResponseBodyTab = ({
           tabSize: 2,
           insertSpaces: true,
           fontFamily: 'JetBrains Mono',
+          wordWrap: 'wordWrapColumn',
           scrollBeyondLastLine: false,
           wordBasedSuggestions: 'off',
         }}
