@@ -4,28 +4,25 @@ import { v4 as uuidv4 } from 'uuid';
 import { KeyValue } from '@/types';
 
 export const useKeyValueList = (initialItems: KeyValue[] = []) => {
-  const [items, setItems] = useState<KeyValue[]>(initialItems);
+  const [items, setItems] = useState<KeyValue[]>(
+    initialItems.map((item) => ({
+      ...item,
+      id: item.id || uuidv4(),
+    }))
+  );
 
   const addItem = () => {
-    setItems([...items, { id: uuidv4(), key: '', value: '' }]);
+    setItems((prev) => [...prev, { id: uuidv4(), key: '', value: '' }]);
   };
 
   const removeItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+    setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   const updateItem = (id: string, key: string, value: string) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, key, value } : item))
+    setItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, key, value } : item))
     );
-  };
-
-  const setItemsWithId = (newItems: KeyValue[]) => {
-    const itemsWithId = newItems.map((item) => ({
-      ...item,
-      id: item.id || uuidv4(),
-    }));
-    setItems(itemsWithId);
   };
 
   return {
@@ -33,6 +30,13 @@ export const useKeyValueList = (initialItems: KeyValue[] = []) => {
     addItem,
     removeItem,
     updateItem,
-    setItems: setItemsWithId,
+    setItems: (newItems: KeyValue[]) => {
+      setItems(
+        newItems.map((item) => ({
+          ...item,
+          id: item.id || uuidv4(),
+        }))
+      );
+    },
   };
 };

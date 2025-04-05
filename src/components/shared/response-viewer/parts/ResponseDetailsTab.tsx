@@ -1,5 +1,7 @@
 'use client';
 
+import { getStatusColor } from '@/utils';
+
 interface ResponseDetailsTabProps {
   statusCode?: number;
   statusText?: string;
@@ -17,7 +19,9 @@ export const ResponseDetailsTab = ({
         <h3 className="font-semibold">Status</h3>
         <div className="flex gap-2 items-center">
           {statusCode ? (
-            <span className="px-2 py-1 bg-success-100 text-success-800 rounded-md text-sm">
+            <span
+              className={`px-2 py-1 rounded-md text-sm ${getStatusColor(statusCode)}`}
+            >
               {statusCode} {statusText}
             </span>
           ) : (

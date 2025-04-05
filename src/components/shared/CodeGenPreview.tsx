@@ -5,16 +5,24 @@ import codegen from 'postman-code-generators';
 import { Request } from 'postman-collection';
 import React, { useEffect, useState } from 'react';
 
-import { LanguageGroup } from '@/types';
+import { HttpMethod, KeyValue, LanguageGroup } from '@/types';
 import { cn } from '@/utils';
 import { Select, SelectItem, Snippet } from '@heroui/react';
 
 interface CodeGenPreviewProps {
   className?: string;
+  url: string;
+  method: HttpMethod;
+  body: string;
+  headers: KeyValue[];
 }
 
 export const CodeGenPreview = ({
   className,
+  url,
+  method,
+  body,
+  headers,
 }: Readonly<CodeGenPreviewProps>) => {
   const [snippet, setSnippet] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -27,8 +35,7 @@ export const CodeGenPreview = ({
     setError(null);
     setSnippet('');
 
-    const requestUrl = 'https://pokeapi.co/api/v2/pokemon/ditto';
-    const request = new Request(requestUrl);
+    const request = new Request(url);
 
     const options = {
       indentCount: 2,
@@ -51,7 +58,7 @@ export const CodeGenPreview = ({
         setLoading(false);
       }
     );
-  }, [language, variant]);
+  }, [language, variant, url, method, body, headers]);
 
   const languageGroups: LanguageGroup[] = codegen.getLanguageList();
 

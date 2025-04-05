@@ -1,48 +1,63 @@
 'use client';
 
 import { Trash2 } from 'lucide-react';
+import { ChangeEvent } from 'react';
 
 import { KeyValue } from '@/types';
-import { cn } from '@/utils';
 import { Button, Input } from '@heroui/react';
 
 interface RequestKeyValueItemProps {
-  className?: string;
   item: KeyValue;
   index: number;
-  updateItem: (id: string, field: 'key' | 'value', newValue: string) => void;
+  updateItem: (id: string, key: string, value: string) => void;
   removeItem: (id: string) => void;
 }
 
 export const RequestKeyValueItem = ({
-  className,
   item,
   index,
   updateItem,
   removeItem,
-}: Readonly<RequestKeyValueItemProps>) => (
-  <div className={cn('flex gap-2 items-center', className)}>
-    <Input
-      aria-label={`Item key ${index + 1}`}
-      placeholder="Key"
-      value={item.key}
-      onChange={(e) => updateItem(item.id, 'key', e.target.value)}
-      className="flex-1"
-    />
-    <Input
-      aria-label={`Item value ${index + 1}`}
-      placeholder="Value"
-      value={item.value}
-      onChange={(e) => updateItem(item.id, 'value', e.target.value)}
-      className="flex-1"
-    />
-    <Button
-      isIconOnly
-      variant="light"
-      size="sm"
-      onPress={() => removeItem(item.id)}
-    >
-      <Trash2 size={16} className="text-danger" />
-    </Button>
-  </div>
-);
+}: RequestKeyValueItemProps) => {
+  const handleKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateItem(item.id, e.target.value, item.value);
+  };
+
+  const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateItem(item.id, item.key, e.target.value);
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <Input
+        aria-label={`Header key ${index + 1}`}
+        placeholder="Key"
+        value={item.key}
+        onChange={handleKeyChange}
+        classNames={{
+          input: 'text-sm',
+        }}
+      />
+
+      <Input
+        aria-label={`Header value ${index + 1}`}
+        placeholder="Value"
+        value={item.value}
+        onChange={handleValueChange}
+        classNames={{
+          input: 'text-sm',
+        }}
+      />
+
+      <Button
+        isIconOnly
+        size="sm"
+        variant="light"
+        aria-label={`Remove header ${index + 1}`}
+        onPress={() => removeItem(item.id)}
+      >
+        <Trash2 size={16} className="text-danger" />
+      </Button>
+    </div>
+  );
+};

@@ -19,18 +19,18 @@ export const RequestHeadersTab = ({
   setHeaders,
 }: Readonly<RequestHeadersTabProps>) => {
   const { items, addItem, removeItem, updateItem, setItems } =
-    useKeyValueList(headers);
+    useKeyValueList();
 
   useEffect(() => {
-    setItems(headers);
-  }, [headers]);
+    if (headers.length === 0) {
+      setItems([{ id: '', key: '', value: '' }]);
+    } else {
+      setItems(headers);
+    }
+  }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHeaders(items);
-    }, 200);
-
-    return () => clearTimeout(timer);
+    setHeaders(items);
   }, [items]);
 
   return (
@@ -57,17 +57,15 @@ export const RequestHeadersTab = ({
             No headers added
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
-            {items.map((item, index) => (
-              <RequestKeyValueItem
-                key={item.id}
-                item={item}
-                index={index}
-                updateItem={updateItem}
-                removeItem={removeItem}
-              />
-            ))}
-          </div>
+          items.map((item, index) => (
+            <RequestKeyValueItem
+              key={item.id}
+              item={item}
+              index={index}
+              updateItem={updateItem}
+              removeItem={removeItem}
+            />
+          ))
         )}
       </div>
     </div>

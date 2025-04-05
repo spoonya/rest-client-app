@@ -1,8 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
 import {
   CodeGenPreview,
   RequestPanel,
@@ -11,25 +8,22 @@ import {
   Sidebar,
 } from '@/components';
 import { useRequestConfig, useRequestExecutor } from '@/hooks';
-import { KeyValue } from '@/types';
 
 export default function RestClient() {
   const requestConfig = useRequestConfig({
     method: 'GET',
     url: 'https://pokeapi.co/api/v2/pokemon/',
     body: '',
+    headers: [],
   });
 
   const { execute, response, error } = useRequestExecutor();
-  const [headers, setHeaders] = useState<KeyValue[]>([
-    { id: uuidv4(), key: '', value: '' },
-  ]);
 
   const handleSubmit = () => {
     execute(
       requestConfig.method,
       requestConfig.url,
-      headers,
+      requestConfig.headers.filter((header) => header.key.trim() !== ''),
       requestConfig.body
     );
   };
@@ -49,10 +43,15 @@ export default function RestClient() {
           <RequestPanel
             body={requestConfig.body}
             onBodyChange={requestConfig.setBody}
-            headers={headers}
-            onHeadersChange={setHeaders}
+            headers={requestConfig.headers}
+            onHeadersChange={requestConfig.setHeaders}
           />
-          <CodeGenPreview />
+          <CodeGenPreview
+            method={requestConfig.method}
+            url={requestConfig.url}
+            headers={requestConfig.headers}
+            body={requestConfig.body}
+          />
           <ResponseViewer
             responseBody={response?.body}
             statusCode={response?.statusCode}
