@@ -4,8 +4,6 @@ import { useTranslations } from 'next-intl';
 
 import { AuthButtons, Menu, PageLayout } from '@/components';
 import { useAuth } from '@/hooks';
-
-import { AuthButtons } from '@/components/shared/AuthButtons';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib';
 import { useState, useEffect } from 'react';
