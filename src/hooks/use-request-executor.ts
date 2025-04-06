@@ -30,6 +30,20 @@ export const useRequestExecutor = () => {
         body,
       });
 
+      if (response?.statusCode === 200) {
+        const data = new Date();
+        const keysArr = localStorage.getItem('requestKeys')?.split(',') || [];
+        keysArr.push(data.toString());
+        localStorage.setItem('requestKeys', keysArr.join(','));
+        const value = {
+          method: method,
+          url: url,
+          header: headers.join(','),
+          body: body,
+        };
+        localStorage.setItem(data.toString(), JSON.stringify(value));
+      }
+
       const formattedData = result.data
         ? typeof result.data === 'object'
           ? JSON.stringify(result.data, null, 2)

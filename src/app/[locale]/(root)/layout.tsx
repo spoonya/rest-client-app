@@ -1,9 +1,12 @@
-import { DefaultLayout } from '@/layouts';
 
 export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <DefaultLayout>{children}</DefaultLayout>;
+  return (
+    <div className="min-h-screen">
+      {children}
+    </div>
+  );
 }

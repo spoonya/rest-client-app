@@ -10,6 +10,7 @@ import { ReactNode } from 'react';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from '../providers';
+import { Footer, Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -41,10 +42,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html className="h-full" lang={locale}>
-      <body className={jetBrainsMono.className}>
+    <html>
+
+    <body className={jetBrainsMono.className}>
         <Providers>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <div className="w-full h-screen flex flex-col justify-between">
+              <Header />
+                    <main className='h-full'>
+              
+                    {children}
+                    </main>
+                    <Footer />
+            </div>
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>
