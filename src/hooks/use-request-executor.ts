@@ -35,7 +35,12 @@ export const useRequestExecutor = () => {
         const keysArr = localStorage.getItem('requestKeys')?.split(',') || [];
         keysArr.push(data.toString());
         localStorage.setItem('requestKeys', keysArr.join(','));
-        const value = { method: method, url: url, header: headers, body: body };
+        const value = {
+          method: method,
+          url: url,
+          header: headers.join(','),
+          body: body,
+        };
         localStorage.setItem(data.toString(), JSON.stringify(value));
       }
 
