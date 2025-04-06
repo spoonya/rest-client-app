@@ -29,9 +29,15 @@ export const useRequestExecutor = () => {
         headers: requestHeaders,
         body,
       });
-      const data = new Date();
-      const value = { method: method, url: url, header: headers, body: body };
-      localStorage.setItem(data.toString(), JSON.stringify(value));
+
+      if (response?.statusCode === 200) {
+        const data = new Date();
+        const keysArr = localStorage.getItem('requestKeys')?.split(',') || [];
+        keysArr.push(data.toString());
+        localStorage.setItem('requestKeys', keysArr.join(','));
+        const value = { method: method, url: url, header: headers, body: body };
+        localStorage.setItem(data.toString(), JSON.stringify(value));
+      }
 
       const formattedData = result.data
         ? typeof result.data === 'object'
