@@ -7,12 +7,13 @@ import { routing } from '@/i18n/routing';
 import { locales } from '@/services';
 import { Locale } from '@/types';
 import { Select, SelectItem } from '@heroui/react';
+import { cn } from '@/utils';
 
 interface LocaleSwitcherProps {
   className?: string;
 }
 
-export const LocaleSwitcher = ({}: Readonly<LocaleSwitcherProps>) => {
+export const LocaleSwitcher = ({className}: Readonly<LocaleSwitcherProps>) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
@@ -32,7 +33,8 @@ export const LocaleSwitcher = ({}: Readonly<LocaleSwitcherProps>) => {
 
   return (
     <Select
-      className="max-w-lg"
+      className={cn(className, "max-w-lg")}
+      classNames={{label: 'text-inherit font-medium'}}
       defaultSelectedKeys={[currentLocale]}
       label={t('label')}
       labelPlacement="outside-left"
