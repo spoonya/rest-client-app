@@ -35,8 +35,23 @@ export const CodeGenPreview = ({
     setError(null);
     setSnippet('');
 
-    const request = new Request(url);
+    const request = new Request({
+      url,
+      method,
+      header: headers
+        .filter((h) => h.key && h.value)
+        .map((h) => ({ key: h.key, value: h.value })),
 
+      body:
+        body && method !== 'GET'
+          ? {
+              mode: 'raw',
+              raw: body,
+            }
+          : undefined,
+    });
+
+    console.log(url, request);
     const options = {
       indentCount: 2,
       indentType: 'Space',
