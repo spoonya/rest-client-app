@@ -44,7 +44,7 @@ export const RequestHeadersTab = ({
           color="primary"
           variant="flat"
           startContent={<Plus size={16} className="text-current" />}
-          className="hover:bg-primary/20"
+          className="hover:bg-primary/20 text-[14px]"
           onPress={addItem}
         >
           Add Header

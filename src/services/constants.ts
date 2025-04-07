@@ -7,7 +7,6 @@ export enum AppRoutes {
   VARS = '/variables',
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
-  AUTH = 'auth',
 }
 
 export const locales = ['en', 'ru'] as const;
@@ -32,6 +31,14 @@ export const requestMethods = [
   {
     value: 'PATCH',
     label: 'PATCH',
+  },
+  {
+    value: 'HEAD',
+    label: 'HEAD',
+  },
+  {
+    value: 'OPTIONS',
+    label: 'OPTIONS',
   },
 ] as const;
 

@@ -1,16 +1,16 @@
 {
   "HomePage": {
-    "title": "Apicorn REST Client",
-    "description": "Modern API testing tool with advanced features for developers",
-    "taskRequirements": "Task Requirements",
-    "getStarted": "Get Started",
-    "authPrompt": "Create free account to start testing APIs",
-    "technologies": "Built With Modern Technologies",
-    "team": "Development Team",
-    "welcomeBack": "Welcome Back, {name}!",
-    "restClient": "REST Client",
-    "history": "Request History",
-    "variables": "Environment Variables",
+    "title": "Apicorn",
+    "description": "Modern API testing tool for developers",
+    "projectGoal": "Project goal: Create <highlight>Postman-like REST client</highlight> with auth, history and variables support",
+    "courseInfo": "Developed as part of the <courseLink>RS School React Course</courseLink> - free education program",
+    "featuresTitle": "Features",
+    "features": {
+      "restClient": "Full-featured REST client with all HTTP methods support",
+      "history": "Track your request history and quickly access previous calls",
+      "variables": "Manage environment variables for different API endpoints"
+    },
+    "technologies": "Technologies",
     "technologiesList": {
       "nextjs": "Full-stack framework with React and Server Components",
       "supabase": "Open source Firebase alternative with realtime DB",
@@ -18,6 +18,19 @@
       "postman": "Code generation for 8+ languages with Postman engine",
       "i18n": "Internationalization with next-intl library",
       "react": "Latest React features with Server Components"
+    },
+    "team": "Our Team",
+    "welcomeBack": "Welcome back, {name}!",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables",
+    "getStarted": "Get Started",
+    "authPrompt": "Sign up now to start testing your APIs",
+    "taskRequirements": "Task Requirements",
+    "teamMembers": {
+      "jjjulietta": "Yuliya Ivachshanka",
+      "xsetiqq": "Tsimafei Liauchuk",
+      "spoonya": "Siarhei Punia"
     }
   },
   "Navigation": {

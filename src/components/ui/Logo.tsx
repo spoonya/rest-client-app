@@ -8,12 +8,8 @@ interface LogoProps {
 
 export const Logo = ({ className }: Readonly<LogoProps>) => {
   return (
-    <Image
-      src="/logo.svg"
-      alt="Apicorn"
-      width={40}
-      height={40}
-      className={cn(className)}
-    />
+    <div className={cn(className, 'relative')}>
+      <Image src="/logo.svg" alt="Apicorn" fill />
+    </div>
   );
 };
