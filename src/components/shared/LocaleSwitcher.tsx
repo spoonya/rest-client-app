@@ -46,12 +46,18 @@ export const LocaleSwitcher = ({
           <Globe size={18} />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Select language" className="min-w-[120px]">
+      <DropdownMenu
+        aria-label="Select language"
+        className="min-w-[120px]"
+        selectionMode="single"
+        disallowEmptySelection
+        variant="flat"
+      >
         {locales.map((locale) => (
           <DropdownItem
             key={locale}
             onPress={() => switchLocale(locale)}
-            className={currentLocale === locale ? 'bg-slate-100' : ''}
+            className={cn(locale === currentLocale && 'bg-slate-100')}
           >
             {languageNames[locale]}
           </DropdownItem>

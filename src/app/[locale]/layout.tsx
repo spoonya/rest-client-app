@@ -7,10 +7,10 @@ import { JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
+import { Footer, Header } from '@/components';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from '../providers';
-import { Footer, Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',

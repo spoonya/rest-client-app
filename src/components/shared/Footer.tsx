@@ -1,46 +1,55 @@
 'use client';
 
-import { developers } from '@/data';
-import { cn } from '@/utils';
-
-import { DeveloperItem } from './DeveloperItem';
 import Image from 'next/image';
 
-import Link from 'next/link';
+import { developers } from '@/data';
+import { cn } from '@/utils';
+import { Link } from '@heroui/react';
 
-interface HeaderProps {
-  className?: string;
-}
+import { Container } from '../ui';
+import { DeveloperItem } from './DeveloperItem';
 
-export const Footer = ({ className }: HeaderProps) => {
+export const Footer = ({ className }: { className?: string }) => {
   return (
-    <footer className={cn(className)}>
-      <div className="title flex items-center justify-around py-2">
-        <Link href="https://github.com/spoonya/rest-client-app">GitHub</Link>
-
-        <div className="text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">© 2025 </p>
-        </div>
-        <Link href="https://rs.school/courses/reactjs">
-          <Image
-            src="/ReactCourseLogo.svg"
-            alt="ReactCourseLogo"
-            width={40}
-            height={40}
-          />
-        </Link>
-      </div>
-      <hr />
-      <div className="flex flex-col items-center justify-center ">
-        <p className="title">developers</p>
-        <div className="flex flex-col items-center w-full gap-9 py-3">
-          <div className="flex flex-wrap justify-center gap-6 px-40 sm:px-4">
+    <footer
+      className={cn(
+        className,
+        'border-t border-slate-200 py-4 h-max-[var(--footer-height)] h-full'
+      )}
+    >
+      <Container>
+        <div className="max-w-8xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
             {developers.map((developer) => (
               <DeveloperItem key={developer.name} developer={developer} />
             ))}
           </div>
+          <div className="flex items-center gap-6">
+            <Link
+              href="https://github.com/spoonya/rest-client-app"
+              className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+              isExternal
+            >
+              GitHub
+            </Link>
+            <p className="text-sm text-slate-500">
+              &copy; {new Date().getFullYear()}
+            </p>
+            <Link
+              href="https://rs.school/courses/reactjs"
+              className="hover:opacity-80 transition-opacity"
+              isExternal
+            >
+              <Image
+                src="/logo-rs.svg"
+                alt="RS School"
+                width={24}
+                height={24}
+              />
+            </Link>
+          </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

@@ -2,17 +2,26 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+import { Container } from '../ui';
 import { Navigation } from './Navigation';
 
 export const Header = () => {
   const { scrollY } = useScroll();
 
-  const borderOpacity = useTransform(scrollY, [0, 100], [1, 0]);
-
-  const shadow = useTransform(
+  const borderColor = useTransform(
     scrollY,
     [0, 100],
-    ['none', '0 2px 4px -2px rgba(0, 0, 0, 0.05)']
+    ['rgba(226,232,240,1)', 'rgba(226, 232, 240, 0)']
+  );
+  const blurValue = useTransform(scrollY, [0, 100], [0, 50]);
+  const backdropFilterValue = useTransform(
+    blurValue,
+    (value) => `blur(${value}px)`
+  );
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 100],
+    ['rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.25)']
   );
 
   return (
@@ -20,19 +29,17 @@ export const Header = () => {
       style={{
         position: 'sticky',
         top: 0,
-        zIndex: 50,
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(8px)',
-        borderBottom: '1px solid #e2e8f0',
-        boxShadow: shadow,
+        zIndex: 100,
+        backgroundColor: backgroundColor,
+        backdropFilter: backdropFilterValue,
+        borderBottom: '1px solid',
+        borderBottomColor: borderColor,
       }}
-      className="transition-all duration-300"
+      className="transition-all duration-300 h-max-[var(--header-height)] h-full"
     >
-      <motion.div
-        style={{ opacity: borderOpacity }}
-        className="absolute bottom-0 left-0 w-full h-px bg-slate-200"
-      />
-      <Navigation />
+      <Container>
+        <Navigation />
+      </Container>
     </motion.header>
   );
 };

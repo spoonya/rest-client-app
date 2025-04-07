@@ -10,9 +10,9 @@ export const Logo = ({ className }: Readonly<LogoProps>) => {
   return (
     <Image
       src="/logo.svg"
-      alt="Logo"
-      width={100}
-      height={100}
+      alt="Apicorn"
+      width={40}
+      height={40}
       className={cn(className)}
     />
   );

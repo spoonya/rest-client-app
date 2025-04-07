@@ -1,25 +1,16 @@
 'use client';
 
 import { DeveloperInfo } from '@/types';
-import { Link, User } from '@heroui/react';
+import { Link } from '@heroui/react';
 
-interface FooterProps {
-  developer: DeveloperInfo;
-  className?: string;
-}
-
-export const DeveloperItem = ({ developer }: FooterProps) => {
+export const DeveloperItem = ({ developer }: { developer: DeveloperInfo }) => {
   return (
-    <User
-      avatarProps={{
-        src: developer.avatar,
-      }}
-      description={
-        <Link isExternal href={developer.git} size="sm">
-          {developer.gitName}
-        </Link>
-      }
-      name={developer.name}
-    />
+    <Link
+      isExternal
+      href={developer.git}
+      className="text-sm text-slate-600 hover:text-blue-600 px-2 transition-colors"
+    >
+      {developer.gitName}
+    </Link>
   );
 };
