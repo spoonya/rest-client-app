@@ -15,16 +15,10 @@ export const Header = () => {
     scrollY,
     [0, 0.5, 1],
 
-    ["#fff", "#0f0", "#000"],
+    ['#fff', '#0f0', '#000']
+  );
 
-  )
-
-  const color = useTransform(
-    scrollY,
-    [0, 0.5, 1],
-    ['#4169E1', '#0f0', '#fff'],
-
-  )
+  const color = useTransform(scrollY, [0, 0.5, 1], ['#4169E1', '#0f0', '#fff']);
 
   const box = useTransform(
     scrollY,
@@ -32,11 +26,20 @@ export const Header = () => {
     ['#778899 5px 10px 5px', '#0ff 5px 10px 5px', '#B0C4DE 5px 10px 5px']
   );
   return (
-    <motion.header style={{ position: 'sticky', fontSize: 17, color: color, top: 0, zIndex: 10, boxShadow: box, backgroundColor: backgroundColor, transition: 'all', transitionDuration: '0.5s'
-    }}
-     >
-        <Navigation />
-      </motion.header>
-  
+    <motion.header
+      style={{
+        position: 'sticky',
+        fontSize: 17,
+        color: color,
+        top: 0,
+        zIndex: 10,
+        boxShadow: box,
+        backgroundColor: backgroundColor,
+        transition: 'all',
+        transitionDuration: '0.5s',
+      }}
+    >
+      <Navigation />
+    </motion.header>
   );
 };

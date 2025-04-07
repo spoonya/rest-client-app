@@ -10,12 +10,9 @@ import {
 import { useRequestConfig, useRequestExecutor } from '@/hooks';
 
 export default function RestClient() {
-  const requestConfig = useRequestConfig({
-    method: 'GET',
-    url: 'https://pokeapi.co/api/v2/pokemon/',
-    body: '',
-    headers: [],
-  });
+  const initialConfig = {};
+
+  const requestConfig = useRequestConfig(initialConfig);
 
   const { execute, response, error } = useRequestExecutor();
 

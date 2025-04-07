@@ -13,7 +13,9 @@ interface LocaleSwitcherProps {
   className?: string;
 }
 
-export const LocaleSwitcher = ({className}: Readonly<LocaleSwitcherProps>) => {
+export const LocaleSwitcher = ({
+  className,
+}: Readonly<LocaleSwitcherProps>) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
@@ -33,8 +35,8 @@ export const LocaleSwitcher = ({className}: Readonly<LocaleSwitcherProps>) => {
 
   return (
     <Select
-      className={cn(className, "max-w-lg")}
-      classNames={{label: 'text-inherit font-medium'}}
+      className={cn(className, 'max-w-lg')}
+      classNames={{ label: 'text-inherit font-medium' }}
       defaultSelectedKeys={[currentLocale]}
       label={t('label')}
       labelPlacement="outside-left"

@@ -55,3 +55,7 @@ export const editorModes: EditorModeOption[] = [
     label: 'Raw',
   },
 ];
+
+const prefix = 'apicorn';
+
+export const REQUEST_CONFIG_KEY = `${prefix}-request-config`;

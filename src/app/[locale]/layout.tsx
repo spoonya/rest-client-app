@@ -43,17 +43,13 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html>
-
-    <body className={jetBrainsMono.className}>
+      <body className={jetBrainsMono.className}>
         <Providers>
           <NextIntlClientProvider>
             <div className="w-full h-screen flex flex-col justify-between">
               <Header />
-                    <main className='h-full'>
-              
-                    {children}
-                    </main>
-                    <Footer />
+              <main className="h-full">{children}</main>
+              <Footer />
             </div>
           </NextIntlClientProvider>
         </Providers>

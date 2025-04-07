@@ -32,7 +32,7 @@ export const Footer = ({ className }: HeaderProps) => {
       </div>
       <hr />
       <div className="flex flex-col items-center justify-center ">
-        <p className='title'>developers</p>
+        <p className="title">developers</p>
         <div className="flex flex-col items-center w-full gap-9 py-3">
           <div className="flex flex-wrap justify-center gap-6 px-40 sm:px-4">
             {developers.map((developer) => (

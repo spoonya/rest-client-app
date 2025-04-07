@@ -1,4 +1,5 @@
 import { HttpMethod } from './http-method';
+import { KeyValue } from './key-value';
 
 export interface RequestResult<T = unknown> {
   status: number;
@@ -14,4 +15,11 @@ export interface RequestOptions {
   url: string;
   headers?: Record<string, string>;
   body?: string;
+}
+
+export interface RequestConfig {
+  method: HttpMethod;
+  url: string;
+  body: string;
+  headers: KeyValue[];
 }
