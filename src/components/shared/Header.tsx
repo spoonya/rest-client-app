@@ -1,42 +1,38 @@
 'use client';
 
-// import { cn } from '@/utils';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { Navigation } from './Navigation';
 
-// interface HeadeProps {
-//   className?: string;
-// }
-
 export const Header = () => {
   const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
+
+  const borderOpacity = useTransform(scrollY, [0, 100], [1, 0]);
+
+  const shadow = useTransform(
     scrollY,
-    [0, 0.5, 1],
-
-    ["#fff", "#0f0", "#000"],
-
-  )
-
-  const color = useTransform(
-    scrollY,
-    [0, 0.5, 1],
-    ['#4169E1', '#0f0', '#fff'],
-
-  )
-
-  const box = useTransform(
-    scrollY,
-    [0, 0.5, 1],
-    ['#778899 5px 10px 5px', '#0ff 5px 10px 5px', '#B0C4DE 5px 10px 5px']
+    [0, 100],
+    ['none', '0 2px 4px -2px rgba(0, 0, 0, 0.05)']
   );
+
   return (
-    <motion.header style={{ position: 'sticky', fontSize: 17, color: color, top: 0, zIndex: 10, boxShadow: box, backgroundColor: backgroundColor, transition: 'all', transitionDuration: '0.5s'
-    }}
-     >
-        <Navigation />
-      </motion.header>
-  
+    <motion.header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid #e2e8f0',
+        boxShadow: shadow,
+      }}
+      className="transition-all duration-300"
+    >
+      <motion.div
+        style={{ opacity: borderOpacity }}
+        className="absolute bottom-0 left-0 w-full h-px bg-slate-200"
+      />
+      <Navigation />
+    </motion.header>
   );
 };

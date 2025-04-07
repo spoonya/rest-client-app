@@ -1,4 +1,4 @@
-import { EditorModeOption } from '@/types';
+import { EditorModeOption, Locale } from '@/types';
 
 export enum AppRoutes {
   HOME = '/',
@@ -55,3 +55,8 @@ export const editorModes: EditorModeOption[] = [
     label: 'Raw',
   },
 ];
+
+export const languageNames: Record<Locale, string> = {
+  en: 'English',
+  ru: 'Русский',
+};

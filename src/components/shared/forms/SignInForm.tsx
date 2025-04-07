@@ -76,7 +76,7 @@ export function SignInForm() {
         />
         <Input
           type="password"
-          label="password"
+          label="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full"

@@ -1,50 +1,62 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { Globe } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { routing } from '@/i18n/routing';
-import { locales } from '@/services';
+import { languageNames, locales } from '@/services';
 import { Locale } from '@/types';
-import { Select, SelectItem } from '@heroui/react';
 import { cn } from '@/utils';
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from '@heroui/react';
 
 interface LocaleSwitcherProps {
   className?: string;
 }
 
-export const LocaleSwitcher = ({className}: Readonly<LocaleSwitcherProps>) => {
+export const LocaleSwitcher = ({
+  className,
+}: Readonly<LocaleSwitcherProps>) => {
   const pathname = usePathname();
   const router = useRouter();
   const currentLocale = useLocale();
-  const t = useTranslations('LocaleSwitcher');
 
   const switchLocale = (newLocale: Locale) => {
-    const segments = pathname.split('/');
-
-    const pathWithoutLocale =
-      segments
-        .filter((segment, i) => i !== 1 || !locales.includes(segment as Locale))
-        .join('/') || '/';
-
-    const newPath = `/${newLocale}${pathWithoutLocale}`;
+    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
     router.push(newPath);
   };
 
   return (
-    <Select
-      className={cn(className, "max-w-lg")}
-      classNames={{label: 'text-inherit font-medium'}}
-      defaultSelectedKeys={[currentLocale]}
-      label={t('label')}
-      labelPlacement="outside-left"
-      placeholder="Select lang"
-    >
-      {routing.locales.map((cur) => (
-        <SelectItem key={cur} onPress={() => switchLocale(cur)}>
-          {t('locale', { locale: cur })}
-        </SelectItem>
-      ))}
-    </Select>
+    <Dropdown>
+      <DropdownTrigger>
+        <Button
+          isIconOnly
+          variant="light"
+          size="sm"
+          className={cn(
+            className,
+            'text-slate-600 hover:bg-slate-100 transition-background'
+          )}
+        >
+          <Globe size={18} />
+        </Button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Select language" className="min-w-[120px]">
+        {locales.map((locale) => (
+          <DropdownItem
+            key={locale}
+            onPress={() => switchLocale(locale)}
+            className={currentLocale === locale ? 'bg-slate-100' : ''}
+          >
+            {languageNames[locale]}
+          </DropdownItem>
+        ))}
+      </DropdownMenu>
+    </Dropdown>
   );
 };

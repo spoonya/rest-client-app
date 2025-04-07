@@ -4,7 +4,7 @@
     "description": "This is a main page"
   },
   "Navigation": {
-    "home": "Домой",
+    "home": "Главная",
     "Sign In": "Войти",
     "Sign Up": "Зарегистрироваться",
     "Sign Out": "Выйти",
