@@ -1,7 +1,24 @@
 {
   "HomePage": {
-    "title": "Hello",
-    "description": "This is a main page"
+    "title": "Apicorn REST Client",
+    "description": "Modern API testing tool with advanced features for developers",
+    "taskRequirements": "Task Requirements",
+    "getStarted": "Get Started",
+    "authPrompt": "Create free account to start testing APIs",
+    "technologies": "Built With Modern Technologies",
+    "team": "Development Team",
+    "welcomeBack": "Welcome Back, {name}!",
+    "restClient": "REST Client",
+    "history": "Request History",
+    "variables": "Environment Variables",
+    "technologiesList": {
+      "nextjs": "Full-stack framework with React and Server Components",
+      "supabase": "Open source Firebase alternative with realtime DB",
+      "tailwind": "Utility-first CSS framework for rapid UI development",
+      "postman": "Code generation for 8+ languages with Postman engine",
+      "i18n": "Internationalization with next-intl library",
+      "react": "Latest React features with Server Components"
+    }
   },
   "Navigation": {
     "home": "Home",

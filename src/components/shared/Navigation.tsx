@@ -33,7 +33,7 @@ export function Navigation() {
               className="flex items-center gap-2 transition-all duration-300 hover:opacity-80"
             >
               <Logo className="h-9 w-9" />
-              <span className="font-semibold text-slate-800">Apicorn</span>
+              <span className="font-bold text-slate-800 text-lg">Apicorn</span>
             </Link>
           </div>
           <div className="flex items-center gap-4">

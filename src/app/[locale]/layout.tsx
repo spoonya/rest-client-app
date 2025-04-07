@@ -46,7 +46,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className={jetBrainsMono.className}>
         <Providers>
           <NextIntlClientProvider>
-            <div className="w-full h-screen flex flex-col justify-between">
+            <div className="w-full flex flex-col justify-between">
               <Header />
               <main className="h-full">{children}</main>
               <Footer />
