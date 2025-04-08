@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 import { ResponseTabs } from '@/services';
@@ -22,21 +23,20 @@ interface ResponseViewerProps {
 export const ResponseViewer = ({
   className,
   language = 'json',
-  statusCode = 200,
+  statusCode,
   statusText = 'OK',
   headers = [],
   responseBody = '',
   requestMethod = 'GET',
   error = '',
 }: Readonly<ResponseViewerProps>) => {
+  const t = useTranslations('RestClient');
   const [activeTab, setActiveTab] = React.useState<ResponseTabs>(
     ResponseTabs.BODY
   );
 
-  const detailsTabTitle = `${ResponseTabs.DETAILS} ${requestMethod}`;
-  const bodyTabTitle = `${ResponseTabs.BODY}${
-    statusCode ? ` (${statusCode})` : ''
-  }`;
+  const detailsTabTitle = `${t('request')} ${requestMethod}`;
+  const bodyTabTitle = `${t('response')}${statusCode ? ` (${statusCode})` : ''}`;
 
   return (
     <div

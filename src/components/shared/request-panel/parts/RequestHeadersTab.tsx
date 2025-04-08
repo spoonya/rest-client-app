@@ -1,6 +1,7 @@
 'use client';
 
 import { Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 
 import { useKeyValueList } from '@/hooks';
@@ -18,6 +19,7 @@ export const RequestHeadersTab = ({
   headers,
   setHeaders,
 }: Readonly<RequestHeadersTabProps>) => {
+  const t = useTranslations('RestClient');
   const { items, addItem, removeItem, updateItem, setItems } =
     useKeyValueList();
 
@@ -37,7 +39,7 @@ export const RequestHeadersTab = ({
     <div className="flex flex-col gap-3 rounded-medium bg-content1 p-3 shadow-sm">
       <div className="flex justify-between items-center">
         <span className="text-sm font-semibold text-foreground/80">
-          Headers
+          {t('headers')}
         </span>
         <Button
           size="sm"
@@ -47,14 +49,14 @@ export const RequestHeadersTab = ({
           className="hover:bg-primary/20 text-[14px]"
           onPress={addItem}
         >
-          Add Header
+          {t('addHeader')}
         </Button>
       </div>
 
       <div className="flex flex-col gap-2">
         {items.length === 0 ? (
           <div className="flex-center h-24 text-foreground/40 text-sm">
-            No headers added
+            {t('headersEmpty')}
           </div>
         ) : (
           items.map((item, index) => (

@@ -34,7 +34,9 @@ export function Navigation() {
               className="flex items-center gap-2 transition-all duration-300 hover:opacity-80"
             >
               <Logo className="h-9 w-9" />
-              <span className="font-bold text-slate-800 text-lg">Apicorn</span>
+              <span className="font-bold text-slate-800 text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Apicorn
+              </span>
             </Link>
           </div>
           <div className="flex items-center gap-4">

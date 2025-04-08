@@ -22,7 +22,7 @@ export const HeroSection = ({ user }: Readonly<HeroSectionProps>) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-4xl mx-auto"
+          className="text-center max-w-5xl mx-auto"
         >
           <div className="flex flex-col items-center mb-10">
             <div className="flex items-center gap-4 mb-6">

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 import { EditorMode } from '@/types';
 import { cn } from '@/utils';
 import { Editor as MonacoEditor } from '@monaco-editor/react';
 
 import type * as monaco from 'monaco-editor';
+
 interface RequestBodyEditorProps {
   className?: string;
   value?: string;
@@ -15,13 +16,14 @@ interface RequestBodyEditorProps {
   onMount?: (editor: monaco.editor.IStandaloneCodeEditor) => void;
 }
 
-export const RequestBodyEditor = ({
-  className,
-  value = '',
-  language = 'json',
-  onChange,
-  onMount,
-}: Readonly<RequestBodyEditorProps>) => {
+export interface RequestBodyEditorRef {
+  formatDocument: () => Promise<void>;
+}
+
+export const RequestBodyEditor = forwardRef<
+  RequestBodyEditorRef,
+  Readonly<RequestBodyEditorProps>
+>(({ className, value = '', language = 'json', onChange, onMount }, ref) => {
   const [editorInstance, setEditorInstance] =
     useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 
@@ -38,10 +40,20 @@ export const RequestBodyEditor = ({
     }
   };
 
+  useImperativeHandle(
+    ref,
+    () => ({
+      formatDocument,
+    }),
+    [editorInstance]
+  );
+
   useEffect(() => {
     if (editorInstance && value !== editorInstance.getValue()) {
       editorInstance.setValue(value);
-      if (language === 'json') formatDocument();
+      if (language === 'json') {
+        formatDocument();
+      }
     }
   }, [value, editorInstance]);
 
@@ -78,4 +90,6 @@ export const RequestBodyEditor = ({
       />
     </div>
   );
-};
+});
+
+RequestBodyEditor.displayName = 'RequestBodyEditor';

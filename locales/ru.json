@@ -75,5 +75,21 @@
   "Sidebar": {
     "history": "История"
   },
+  "RestClient": {
+    "copySnippet": "Скопировать фрагмент",
+    "genCode": "Сгенерированный код",
+    "submit": "Отправить",
+    "headers": "Заголовки",
+    "addHeader": "Добавить заголовок",
+    "headersEmpty": "Заголовки пусты",
+    "body": "Тело",
+    "key": "Ключ",
+    "value": "Значение",
+    "request": "Запрос",
+    "response": "Ответ",
+    "status": "Статус",
+    "noStatus": "Нет доступного статуса",
+    "prettify": "Форматировать"
+  },
   "PageLayout": {}
 }

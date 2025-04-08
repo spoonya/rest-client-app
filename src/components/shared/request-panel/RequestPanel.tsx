@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { requestTabs } from '@/services';
@@ -24,6 +25,7 @@ export const RequestPanel = ({
   onBodyChange,
   onHeadersChange,
 }: Readonly<RequestPanelProps>) => {
+  const t = useTranslations('RestClient');
   const [activeTab, setActiveTab] = useState<requestTabs>(requestTabs.HEADERS);
   const [bodyFormat, setBodyFormat] = useState<EditorMode>('json');
 
@@ -39,10 +41,10 @@ export const RequestPanel = ({
         onSelectionChange={(key) => setActiveTab(key as requestTabs)}
         variant="light"
       >
-        <Tab key={requestTabs.HEADERS} title={requestTabs.HEADERS}>
+        <Tab key={requestTabs.HEADERS} title={t('headers')}>
           <RequestHeadersTab headers={headers} setHeaders={onHeadersChange} />
         </Tab>
-        <Tab key={requestTabs.BODY} title={requestTabs.BODY}>
+        <Tab key={requestTabs.BODY} title={t('body')}>
           <RequestBodyTab
             body={body}
             bodyFormat={bodyFormat}

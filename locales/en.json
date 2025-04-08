@@ -75,5 +75,21 @@
   "Sidebar": {
     "history": "History"
   },
+  "RestClient": {
+    "copySnippet": "Copy snippet",
+    "genCode": "Generated code",
+    "submit": "Submit",
+    "headers": "Headers",
+    "addHeader": "Add header",
+    "headersEmpty": "Headers are empty",
+    "body": "Body",
+    "key": "Key",
+    "value": "Value",
+    "request": "Request",
+    "response": "Response",
+    "status": "Status",
+    "noStatus": "No status available",
+    "prettify": "Prettify"
+  },
   "PageLayout": {}
 }
