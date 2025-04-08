@@ -82,7 +82,8 @@
     "key": "Key",
     "value": "Value",
     "delete": "Delete",
-    "add": "Add"
+    "add": "Add",
+    "message": "already exists"
   },
   "RestClient": {
     "copySnippet": "Copy snippet",
