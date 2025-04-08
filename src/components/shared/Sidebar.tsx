@@ -1,6 +1,6 @@
 'use client';
 
-import { History } from 'lucide-react';
+import { History, Undo2, Variable } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
@@ -22,11 +22,25 @@ export const Sidebar = ({ className }: SidebarProps) => {
         className
       )}
     >
-      <ul className="nav">
+      <ul className="nav flex flex-col gap-8">
+        <li>
+          <Link href={AppRoutes.REST}>
+            <Tooltip content={t('restClient')}>
+              <Undo2 className="stroke-gray-600 hover:stroke-primary transition-colors outline-none" />
+            </Tooltip>
+          </Link>
+        </li>
         <li>
           <Link href={AppRoutes.HISTORY}>
             <Tooltip content={t('history')}>
               <History className="stroke-gray-600 hover:stroke-primary transition-colors outline-none" />
+            </Tooltip>
+          </Link>
+        </li>
+        <li>
+          <Link href={AppRoutes.VARS}>
+            <Tooltip content={t('variables')}>
+              <Variable className="stroke-gray-600 hover:stroke-primary transition-colors outline-none" />
             </Tooltip>
           </Link>
         </li>

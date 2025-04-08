@@ -73,7 +73,16 @@
     "button": "Back home"
   },
   "Sidebar": {
-    "history": "History"
+    "history": "History",
+    "variables": "Variables",
+    "restClient": "Rest Client"
+  },
+  "Variables": {
+    "variables": "Variables",
+    "key": "Key",
+    "value": "Value",
+    "delete": "Delete",
+    "add": "Add"
   },
   "RestClient": {
     "copySnippet": "Copy snippet",

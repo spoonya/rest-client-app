@@ -73,7 +73,16 @@
     "button": "Вернуться на главную"
   },
   "Sidebar": {
-    "history": "История"
+    "history": "История",
+    "variables": "Переменные",
+    "restClient": "REST Клиент"
+  },
+  "Variables": {
+    "variables": "Переменные",
+    "key": "Ключ",
+    "value": "Значение",
+    "delete": "Удалить",
+    "add": "Добавить"
   },
   "RestClient": {
     "copySnippet": "Скопировать фрагмент",

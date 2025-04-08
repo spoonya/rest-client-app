@@ -20,7 +20,7 @@ export default function ProtectedLayout({
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
-        router.replace(AppRoutes.SIGN_IN);
+        router.replace(AppRoutes.HOME);
       } else {
         setIsLoading(false);
       }

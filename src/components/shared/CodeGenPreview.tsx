@@ -5,7 +5,8 @@ import { useTranslations } from 'next-intl';
 import codegen from 'postman-code-generators';
 import { Request } from 'postman-collection';
 import React, { useEffect, useState } from 'react';
-
+import { applyVariables } from '@/lib/applyVariables';
+import { getStoredVariables } from '@/lib/getStoredVariables';
 import { HttpMethod, KeyValue, LanguageGroup } from '@/types';
 import { cn } from '@/utils';
 import { Select, SelectItem, Snippet } from '@heroui/react';
@@ -36,19 +37,24 @@ export const CodeGenPreview = ({
     setLoading(true);
     setError(null);
     setSnippet('');
+    const variables = getStoredVariables();
+
+    const finalUrl = applyVariables(url, variables);
+    const finalHeaders = headers.map((h) => ({
+      key: applyVariables(h.key, variables),
+      value: applyVariables(h.value, variables),
+    }));
+    const finalBody = applyVariables(body, variables);
 
     const request = new Request({
-      url,
+      url: finalUrl,
       method,
-      header: headers
-        .filter((h) => h.key && h.value)
-        .map((h) => ({ key: h.key, value: h.value })),
-
+      header: finalHeaders.filter((h) => h.key && h.value),
       body:
-        body && method !== 'GET'
+        finalBody && method !== 'GET'
           ? {
               mode: 'raw',
-              raw: body,
+              raw: finalBody,
             }
           : undefined,
     });

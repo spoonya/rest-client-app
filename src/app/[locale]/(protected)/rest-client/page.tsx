@@ -1,4 +1,6 @@
 'use client';
+import { getStoredVariables } from '@/lib/getStoredVariables';
+import { applyVariables } from '@/lib/applyVariables';
 
 import {
   CodeGenPreview,
@@ -10,9 +12,12 @@ import {
 import { useRequestConfig, useRequestExecutor } from '@/hooks';
 
 export default function RestClient() {
+  const lastUrl =
+    typeof window !== 'undefined' && localStorage.getItem('lastUsedUrl');
+
   const requestConfig = useRequestConfig({
     method: 'GET',
-    url: 'https://pokeapi.co/api/v2/pokemon/',
+    url: lastUrl || 'https://pokeapi.co/api/v2/pokemon/',
     body: '',
     headers: [],
   });
@@ -20,12 +25,23 @@ export default function RestClient() {
   const { execute, response, error } = useRequestExecutor();
 
   const handleSubmit = () => {
-    execute(
-      requestConfig.method,
-      requestConfig.url,
-      requestConfig.headers.filter((header) => header.key.trim() !== ''),
-      requestConfig.body
-    );
+    localStorage.setItem('lastUsedUrl', requestConfig.url);
+
+    const variables = getStoredVariables();
+
+    const finalUrl = applyVariables(requestConfig.url, variables);
+
+    const finalHeaders = requestConfig.headers
+      .filter((header) => header.key.trim() !== '')
+      .map((header, index) => ({
+        id: `header-${index}`,
+        key: applyVariables(header.key, variables),
+        value: applyVariables(header.value, variables),
+      }));
+
+    const finalBody = applyVariables(requestConfig.body, variables);
+
+    execute(requestConfig.method, finalUrl, finalHeaders, finalBody);
   };
 
   return (
