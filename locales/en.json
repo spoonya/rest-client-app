@@ -1,7 +1,37 @@
 {
   "HomePage": {
-    "title": "Hello",
-    "description": "This is a main page"
+    "title": "Apicorn",
+    "description": "Modern API testing tool for developers",
+    "projectGoal": "Project goal: Create <highlight>Postman-like REST client</highlight> with auth, history and variables support",
+    "courseInfo": "Developed as part of the <courseLink>RS School React Course</courseLink> - free education program",
+    "featuresTitle": "Features",
+    "features": {
+      "restClient": "Full-featured REST client with all HTTP methods support",
+      "history": "Track your request history and quickly access previous calls",
+      "variables": "Manage environment variables for different API endpoints"
+    },
+    "technologies": "Technologies",
+    "technologiesList": {
+      "nextjs": "Full-stack framework with React and Server Components",
+      "supabase": "Open source Firebase alternative with realtime DB",
+      "tailwind": "Utility-first CSS framework for rapid UI development",
+      "postman": "Code generation for 8+ languages with Postman engine",
+      "i18n": "Internationalization with next-intl library",
+      "react": "Latest React features with Server Components"
+    },
+    "team": "Our Team",
+    "welcomeBack": "Welcome back, {name}!",
+    "restClient": "REST Client",
+    "history": "History",
+    "variables": "Variables",
+    "getStarted": "Get Started",
+    "authPrompt": "Sign up now to start testing your APIs",
+    "taskRequirements": "Task Requirements",
+    "teamMembers": {
+      "jjjulietta": "Yuliya Ivachshanka",
+      "xsetiqq": "Tsimafei Liauchuk",
+      "spoonya": "Siarhei Punia"
+    }
   },
   "Navigation": {
     "home": "Home",
@@ -44,6 +74,22 @@
   },
   "Sidebar": {
     "history": "History"
+  },
+  "RestClient": {
+    "copySnippet": "Copy snippet",
+    "genCode": "Generated code",
+    "submit": "Submit",
+    "headers": "Headers",
+    "addHeader": "Add header",
+    "headersEmpty": "Headers are empty",
+    "body": "Body",
+    "key": "Key",
+    "value": "Value",
+    "request": "Request",
+    "response": "Response",
+    "status": "Status",
+    "noStatus": "No status available",
+    "prettify": "Prettify"
   },
   "PageLayout": {}
 }

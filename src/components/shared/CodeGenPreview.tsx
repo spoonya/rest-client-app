@@ -1,6 +1,7 @@
 'use client';
 
 import { Copy } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import codegen from 'postman-code-generators';
 import { Request } from 'postman-collection';
 import React, { useEffect, useState } from 'react';
@@ -24,6 +25,7 @@ export const CodeGenPreview = ({
   body,
   headers,
 }: Readonly<CodeGenPreviewProps>) => {
+  const t = useTranslations('RestClient');
   const [snippet, setSnippet] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -85,15 +87,15 @@ export const CodeGenPreview = ({
       )}
     >
       <div className="flex justify-between items-center">
-        <h2 className="text-sm font-semibold text-foreground/80">
-          Generated Code
+        <h2 className="text-sm font-semibold text-foreground/80 mr-3">
+          {t('genCode')}
         </h2>
         <div className="flex gap-2">
           <Select
             aria-label="Select language"
             size="sm"
             classNames={{ trigger: 'bg-white border-1 border-gray-200' }}
-            className="w-[200px]"
+            className="w-[175px]"
             selectedKeys={[selected]}
             disallowEmptySelection
             onChange={(e) => setSelected(e.target.value)}
@@ -134,6 +136,7 @@ export const CodeGenPreview = ({
           <Snippet
             color="primary"
             copyIcon={<Copy size={16} />}
+            tooltipProps={{ content: t('copySnippet') }}
             classNames={{
               pre: 'whitespace-pre-wrap break-all',
             }}

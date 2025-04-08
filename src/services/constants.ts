@@ -1,4 +1,4 @@
-import { EditorModeOption } from '@/types';
+import { EditorModeOption, Locale } from '@/types';
 
 export enum AppRoutes {
   HOME = '/',
@@ -7,7 +7,6 @@ export enum AppRoutes {
   VARS = '/variables',
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
-  AUTH = 'auth',
 }
 
 export const locales = ['en', 'ru'] as const;
@@ -33,6 +32,14 @@ export const requestMethods = [
     value: 'PATCH',
     label: 'PATCH',
   },
+  {
+    value: 'HEAD',
+    label: 'HEAD',
+  },
+  {
+    value: 'OPTIONS',
+    label: 'OPTIONS',
+  },
 ] as const;
 
 export enum requestTabs {
@@ -55,3 +62,8 @@ export const editorModes: EditorModeOption[] = [
     label: 'Raw',
   },
 ];
+
+export const languageNames: Record<Locale, string> = {
+  en: 'English',
+  ru: 'Русский',
+};

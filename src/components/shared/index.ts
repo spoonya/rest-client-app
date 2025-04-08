@@ -16,3 +16,4 @@ export { ResponseDetailsTab } from './response-viewer/parts/ResponseDetailsTab';
 export { ResponseBodyTab } from './response-viewer/parts/ResponseBodyTab';
 export { ResponseViewer } from './response-viewer';
 export { RequestPanel } from './request-panel';
+export * from './home';

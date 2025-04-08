@@ -7,10 +7,15 @@ interface DefaultLayoutProps {
 
 export function DefaultLayout({ children, className }: DefaultLayoutProps) {
   return (
-    <main className={cn('min-h-screen', className)}>
-    
+    <main
+      className={cn(
+        'flex-1',
+        'h-[calc(100vh_-_var(--header-height)_-_var(--footer-height))]',
+        'overflow-auto',
+        className
+      )}
+    >
       {children}
-    
     </main>
   );
 }

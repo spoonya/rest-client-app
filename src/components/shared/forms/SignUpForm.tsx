@@ -1,12 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { Preloader } from '@/components';
 import { supabase } from '@/lib/supabase';
 import { Input } from '@heroui/input';
 import { Button, Link } from '@heroui/react';
@@ -90,14 +90,7 @@ export function SignUpForm() {
   }, [router]);
 
   if (isChecking) {
-    return (
-      <Image
-        src="/loaders/Loader1.svg"
-        alt="Loading..."
-        width={100}
-        height={100}
-      />
-    );
+    return <Preloader />;
   }
 
   return (

@@ -1,9 +1,10 @@
 import { SignUpForm } from '@/components';
+import { DefaultLayout } from '@/layouts';
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-slate-200">
+    <DefaultLayout className="flex justify-center items-center bg-gradient-to-b from-blue-50 to-white">
       <SignUpForm />
-    </div>
+    </DefaultLayout>
   );
 }

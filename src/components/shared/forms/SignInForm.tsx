@@ -1,10 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { Preloader } from '@/components';
 import { supabase } from '@/lib/supabase';
 import { Input } from '@heroui/input';
 import { Button, Link } from '@heroui/react';
@@ -46,14 +46,7 @@ export function SignInForm() {
   }, [router]);
 
   if (isChecking) {
-    return (
-      <Image
-        src="/loaders/Loader1.svg"
-        alt="Loading..."
-        width={100}
-        height={100}
-      />
-    );
+    return <Preloader />;
   }
   return (
     <form
@@ -76,7 +69,7 @@ export function SignInForm() {
         />
         <Input
           type="password"
-          label="password"
+          label="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full"

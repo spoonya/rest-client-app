@@ -1,42 +1,45 @@
 'use client';
 
-// import { cn } from '@/utils';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+import { Container } from '../ui';
 import { Navigation } from './Navigation';
-
-// interface HeadeProps {
-//   className?: string;
-// }
 
 export const Header = () => {
   const { scrollY } = useScroll();
+
+  const borderColor = useTransform(
+    scrollY,
+    [0, 100],
+    ['rgba(226,232,240,1)', 'rgba(226, 232, 240, 0)']
+  );
+  const blurValue = useTransform(scrollY, [0, 100], [0, 50]);
+  const backdropFilterValue = useTransform(
+    blurValue,
+    (value) => `blur(${value}px)`
+  );
   const backgroundColor = useTransform(
     scrollY,
-    [0, 0.5, 1],
-
-    ["#fff", "#0f0", "#000"],
-
-  )
-
-  const color = useTransform(
-    scrollY,
-    [0, 0.5, 1],
-    ['#4169E1', '#0f0', '#fff'],
-
-  )
-
-  const box = useTransform(
-    scrollY,
-    [0, 0.5, 1],
-    ['#778899 5px 10px 5px', '#0ff 5px 10px 5px', '#B0C4DE 5px 10px 5px']
+    [0, 100],
+    ['rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.25)']
   );
+
   return (
-    <motion.header style={{ position: 'sticky', fontSize: 17, color: color, top: 0, zIndex: 10, boxShadow: box, backgroundColor: backgroundColor, transition: 'all', transitionDuration: '0.5s'
-    }}
-     >
+    <motion.header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+        backgroundColor: backgroundColor,
+        backdropFilter: backdropFilterValue,
+        borderBottom: '1px solid',
+        borderBottomColor: borderColor,
+      }}
+      className="transition-all duration-300 h-max-[var(--header-height)] h-full"
+    >
+      <Container>
         <Navigation />
-      </motion.header>
-  
+      </Container>
+    </motion.header>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import { Trash2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { ChangeEvent } from 'react';
 
 import { KeyValue } from '@/types';
@@ -19,6 +20,8 @@ export const RequestKeyValueItem = ({
   updateItem,
   removeItem,
 }: RequestKeyValueItemProps) => {
+  const t = useTranslations('RestClient');
+
   const handleKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
     updateItem(item.id, e.target.value, item.value);
   };
@@ -31,7 +34,7 @@ export const RequestKeyValueItem = ({
     <div className="flex items-center gap-2">
       <Input
         aria-label={`Header key ${index + 1}`}
-        placeholder="Key"
+        placeholder={t('key')}
         value={item.key}
         onChange={handleKeyChange}
         classNames={{
@@ -41,7 +44,7 @@ export const RequestKeyValueItem = ({
 
       <Input
         aria-label={`Header value ${index + 1}`}
-        placeholder="Value"
+        placeholder={t('value')}
         value={item.value}
         onChange={handleValueChange}
         classNames={{
