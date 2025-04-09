@@ -83,7 +83,8 @@
     "value": "Value",
     "delete": "Delete",
     "add": "Add",
-    "message": "already exists"
+    "message": "already exists",
+    "copyVariable": "Copy variable"
   },
   "RestClient": {
     "copySnippet": "Copy snippet",

@@ -1,5 +1,7 @@
 'use client';
 import { Sidebar } from '@/components';
+import { Snippet } from '@heroui/react';
+import { Copy } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
@@ -50,6 +52,9 @@ export default function VariableManager() {
     setVariables((prev) => prev.filter((v) => v.key !== keyToDelete));
   };
 
+  const truncate = (str: string, max: number) =>
+    str.length > max ? str.slice(0, max) + '…' : str;
+
   return (
     <div className="flex h-screen overflow-x-hidden">
       <Sidebar />
@@ -99,20 +104,35 @@ export default function VariableManager() {
                 key={v.key}
                 className="flex items-center justify-between p-4 bg-white border rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div className="flex flex-col pr-4 overflow-hidden min-w-0 flex-1">
-                  <div className="text-sm text-gray-500 truncate">
-                    <span className="text-blue-600 font-semibold" title={v.key}>
-                      {v.key}
-                    </span>
+                <div className="flex items-center gap-4">
+                  <div className="flex flex-col pr-4 overflow-hidden min-w-0 flex-1">
+                    <div className="text-sm text-gray-500">
+                      <span
+                        className="text-blue-600 font-semibold"
+                        title={v.key}
+                      >
+                        {truncate(v.key, 50)}
+                      </span>
+                    </div>
+                    <div
+                      className="text-gray-700 text-sm break-words max-w-full whitespace-normal"
+                      title={v.value}
+                    >
+                      {truncate(v.value, 50)}
+                    </div>
                   </div>
-                  <div
-                    className="text-gray-700 text-sm break-words max-w-full whitespace-normal"
-                    title={v.value}
+                  <Snippet
+                    symbol=""
+                    color="primary"
+                    copyIcon={<Copy size={16} />}
+                    tooltipProps={{ content: t('copyVariable') }}
+                    classNames={{
+                      pre: 'whitespace-pre-wrap break-all',
+                    }}
                   >
-                    {v.value}
-                  </div>
+                    {`{{${v.key}}}`}
+                  </Snippet>
                 </div>
-
                 <button
                   onClick={() => deleteVariable(v.key)}
                   className="text-red-500 hover:underline text-sm shrink-0 ml-2"
