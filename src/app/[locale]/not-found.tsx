@@ -1,8 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-
-import { Header } from '@/components';
 import { AppRoutes } from '@/services';
 import { Button, Link } from '@heroui/react';
 
@@ -11,7 +9,6 @@ export default function NotFound() {
 
   return (
     <main>
-      <Header />
       <h2>404</h2>
       <p>{t('description')}</p>
       <Button as={Link} href={AppRoutes.HOME} color="primary">

@@ -43,8 +43,8 @@ export default function ProtectedLayout({
   }
 
   return (
-    <DefaultLayout className="max-h-screen h-screen flex flex-col justify-between">
-      {children}
+    <DefaultLayout className="flex h-full flex-col justify-between">
+    {children}
     </DefaultLayout>
   );
 }

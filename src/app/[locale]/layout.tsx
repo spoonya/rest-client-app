@@ -49,7 +49,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider>
             <div className="w-full h-screen flex flex-col justify-between">
               <Header />
-                    <main className='h-full'>
+                    <main className='h-5/6'>
               
                     {children}
                     </main>

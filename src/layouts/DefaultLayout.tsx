@@ -7,10 +7,8 @@ interface DefaultLayoutProps {
 
 export function DefaultLayout({ children, className }: DefaultLayoutProps) {
   return (
-    <main className={cn('min-h-screen', className)}>
-    
+    <main className={cn(className)}>
       {children}
-    
     </main>
   );
 }
