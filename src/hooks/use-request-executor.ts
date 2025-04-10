@@ -2,7 +2,11 @@ import { useState } from 'react';
 
 import { processRequest } from '@/services';
 import { HttpMethod, KeyValue } from '@/types';
-import { buildHeadersObject, getRequestStatusText } from '@/utils';
+import {
+  buildArrayFromObj,
+  buildHeadersObject,
+  getRequestStatusText,
+} from '@/utils';
 
 export const useRequestExecutor = () => {
   const [response, setResponse] = useState<{
@@ -29,8 +33,7 @@ export const useRequestExecutor = () => {
         headers: requestHeaders,
         body,
       });
-
-      if (response?.statusCode === 200) {
+      if (result.status && result.status < 400) {
         const data = new Date();
         const keysArr = localStorage.getItem('requestKeys')?.split(',') || [];
         keysArr.push(data.toString());
@@ -38,7 +41,7 @@ export const useRequestExecutor = () => {
         const value = {
           method: method,
           url: url,
-          header: headers.join(','),
+          headers: buildArrayFromObj(headers),
           body: body,
         };
         localStorage.setItem(data.toString(), JSON.stringify(value));

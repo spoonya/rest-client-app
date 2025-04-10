@@ -1,18 +1,18 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { Dispatch, SetStateAction } from 'react';
+// import { Dispatch, SetStateAction } from 'react';
 
 import { requestMethods } from '@/services';
 import { HttpMethod } from '@/types';
 import { cn } from '@/utils';
 import { Button, Input, Select, SelectItem } from '@heroui/react';
+import { useTranslations } from 'next-intl';
 
 interface RequestSearchProps {
   className?: string;
   method: HttpMethod;
   url: string;
-  setMethod: Dispatch<SetStateAction<HttpMethod>>;
+  setMethod: (value: HttpMethod)=> void,
   setUrl: (value: string) => void;
   onSubmit: () => void;
 }

@@ -38,8 +38,8 @@ export default function ProtectedLayout({
   }
 
   return (
-    <DefaultLayout className="flex flex-col justify-between">
-      {children}
+    <DefaultLayout className="flex h-full flex-col justify-between">
+    {children}
     </DefaultLayout>
   );
 }
