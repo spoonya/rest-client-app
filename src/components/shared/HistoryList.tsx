@@ -1,7 +1,9 @@
-import { useRequestConfig } from "@/hooks";
+'use client'
+
+import { useRequestContext } from "@/context/requestContext";
 import { AppRoutes } from "@/services";
 import { HttpMethod, HttpObject, KeyValue, RequestObject } from "@/types";
-import {  cn } from "@/utils"
+import {  buildQueryParams, buildUrl, cn } from "@/utils"
 import { Link } from "@heroui/react";
 
 interface HistoryProps {
@@ -10,23 +12,26 @@ interface HistoryProps {
 }
 
 export const HistoryList = ({className, list}: HistoryProps) => {
-  const requestConfig = useRequestConfig({method: 'GET', url: '', body: '', headers: []});
+const {setMethod, setBody, setUrl, setHeaders} = useRequestContext();
   const handleClick = ({method, body, headers, url }: RequestObject) => {
-   requestConfig.setBody(body as string)
-   requestConfig.setMethod(method as HttpMethod)
-   requestConfig.setUrl(url);
-   requestConfig.setHeaders(headers as KeyValue[])
+    const header = headers?.map((item)=>  Object.fromEntries(item))
+    // console.log(header)
+    // const urls = buildUrl(method, body, url);
+    // console.log(urls)
+    setBody(body as string)
+    setMethod(method as HttpMethod)
+   setUrl(url);
+   setHeaders(header as unknown as KeyValue[])
   }
-
 
   return (
     <div
           className={cn(
             className,
-            'flex flex-col gap-7 p-4 bg-default-50 rounded-xl shadow-sm border-1 border-gray-200 min-w-96 max-w-96'
+            'flex flex-col gap-7 overflow-scroll p-4 bg-default-50 rounded-xl shadow-sm border-1 border-gray-200 min-w-96 max-w-96'
           )}
-        >{list.map((item)=> {console.log(Object.values(item)[0]); return <div key={Object.keys(item)[0]}>
-            <Link href={AppRoutes.REST} onPressUp={(()=> handleClick(Object.values(item)[0]))}>{Object.values(item)[0].url}</Link>
+        >{list.map((item)=> {console.log(item); const [keys, value] = Object.entries(item)[0]; console.log(keys, value); return <div key={keys} >
+            <Link href={AppRoutes.REST + buildUrl(value.method, value.body, value.url) + '?' + buildQueryParams(value.headers || undefined, undefined,  value.method)} onPress={(()=> handleClick(value))}>{`${value.method}, ${value.url}`}</Link>
           </div>})}
             </div>
   )
