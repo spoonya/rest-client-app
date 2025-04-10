@@ -61,7 +61,8 @@
     "password1": "Must contain at least one letter",
     "password2": "Must contain at least one digit",
     "password3": "Must contain at least one special character",
-    "confirmPassword": "Passwords do not match"
+    "confirmPassword": "Passwords do not match",
+    "wrongPassowrdOrEmail": "Wrong password or email"
   },
   "LocaleSwitcher": {
     "label": "Change language",
