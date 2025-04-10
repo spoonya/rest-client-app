@@ -38,9 +38,8 @@ export const CodeGenPreview = ({
     const request = new Request({
       url,
       method,
-      header: headers
-        .filter((h) => h.key && h.value)
-        .map((h) => ({ key: h.key, value: h.value })),
+      header: headers?.filter((h) => h.key && h.value)
+        .map((h) => ({ key: h.key, value: h.value })) || [],
 
       body:
         body && method !== 'GET'
