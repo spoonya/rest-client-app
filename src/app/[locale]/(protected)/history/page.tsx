@@ -1,8 +1,7 @@
-
-'use client'
-import { HistoryList } from "@/components/shared/HistoryList";
-import { HttpObject, RequestObject } from "@/types";
-import { cn } from "@/utils"
+'use client';
+import { HistoryList } from '@/components/shared/HistoryList';
+import { HttpObject, RequestObject } from '@/types';
+import { cn } from '@/utils';
 
 interface HistoryProps {
   className?: string;
@@ -26,5 +25,5 @@ export default function History({className}: HistoryProps) {
               </div>
 
     </div>
- );
+  );
 }

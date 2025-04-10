@@ -6,3 +6,5 @@ export * from './editor-modes';
 export * from './code-gen-lang-group';
 export * from './request';
 export * from './base-object';
+export * from './technology';
+export * from './feature-card';

@@ -7,10 +7,10 @@ import { JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
+import { Footer, Header } from '@/components';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from '../providers';
-import { Footer, Header } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -43,14 +43,12 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html>
-
-    <body className={jetBrainsMono.className}>
+      <body className={jetBrainsMono.className}>
         <Providers>
           <NextIntlClientProvider>
-            <div className="w-full h-screen flex flex-col justify-between">
+            <div className="w-full flex flex-col justify-between">
               <Header />
                     <main className='h-5/6'>
-              
                     {children}
                     </main>
                     <Footer />

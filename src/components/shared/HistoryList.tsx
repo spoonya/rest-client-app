@@ -8,7 +8,7 @@ import { Link } from "@heroui/react";
 
 interface HistoryProps {
   className?: string;
-  list: HttpObject[]
+  list: HttpObject[];
 }
 
 export const HistoryList = ({className, list}: HistoryProps) => {
