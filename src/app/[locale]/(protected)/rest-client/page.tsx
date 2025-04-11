@@ -1,6 +1,11 @@
 'use client';
+
+import { useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { getStoredVariables } from '@/lib/getStoredVariables';
 import { applyVariables } from '@/lib/applyVariables';
+import { encodeRequestToUrl, decodeRequestFromUrl } from '@/utils/urlParams';
+import { saveRequestToHistory } from '@/utils/storage';
 
 import {
   CodeGenPreview,
@@ -11,22 +16,48 @@ import {
 } from '@/components';
 import { useRequestConfig, useRequestExecutor } from '@/hooks';
 
+type HttpMethod =
+  | 'GET'
+  | 'POST'
+  | 'PUT'
+  | 'DELETE'
+  | 'PATCH'
+  | 'HEAD'
+  | 'OPTIONS';
+
 export default function RestClient() {
-  const lastUrl =
-    typeof window !== 'undefined' && localStorage.getItem('lastUsedUrl');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const encodedReq = searchParams.get('req');
 
   const requestConfig = useRequestConfig({
     method: 'GET',
-    url: lastUrl || 'https://pokeapi.co/api/v2/pokemon/',
+    url: 'https://pokeapi.co/api/v2/pokemon/',
     body: '',
     headers: [],
   });
 
   const { execute, response, error } = useRequestExecutor();
 
-  const handleSubmit = () => {
-    localStorage.setItem('lastUsedUrl', requestConfig.url);
+  useEffect(() => {
+    if (!encodedReq) return;
 
+    const decoded = decodeRequestFromUrl(encodedReq);
+    if (decoded) {
+      requestConfig.setMethod(decoded.method as HttpMethod);
+      requestConfig.setUrl(decoded.url);
+      requestConfig.setBody(decoded.body || '');
+      requestConfig.setHeaders(
+        (decoded.headers || []).map((header, index) => ({
+          id: `header-${index}`,
+          key: header.key,
+          value: header.value,
+        }))
+      );
+    }
+  }, [encodedReq]);
+
+  const handleSubmit = () => {
     const variables = getStoredVariables();
 
     const finalUrl = applyVariables(requestConfig.url, variables);
@@ -40,6 +71,18 @@ export default function RestClient() {
       }));
 
     const finalBody = applyVariables(requestConfig.body, variables);
+
+    const requestToSave = {
+      method: requestConfig.method,
+      url: requestConfig.url,
+      headers: requestConfig.headers,
+      body: requestConfig.body,
+    };
+
+    saveRequestToHistory(requestToSave);
+
+    const encoded = encodeRequestToUrl(requestToSave);
+    router.replace(`/rest-client?req=${encoded}`, { scroll: false });
 
     execute(requestConfig.method, finalUrl, finalHeaders, finalBody);
   };

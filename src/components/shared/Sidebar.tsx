@@ -1,6 +1,6 @@
 'use client';
 
-import { History, Undo2, Variable } from 'lucide-react';
+import { ArchiveRestore, History, Variable } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
@@ -26,7 +26,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         <li>
           <Link href={AppRoutes.REST}>
             <Tooltip content={t('restClient')}>
-              <Undo2 className="stroke-gray-600 hover:stroke-primary transition-colors outline-none" />
+              <ArchiveRestore className="stroke-gray-600 hover:stroke-primary transition-colors outline-none" />
             </Tooltip>
           </Link>
         </li>

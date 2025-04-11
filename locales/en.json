@@ -87,6 +87,13 @@
     "message": "already exists",
     "copyVariable": "Copy variable"
   },
+  "History": {
+    "history": "Request history",
+    "noHistory": "No request history",
+    "message": "Try sending a request through our REST client.",
+    "goToClient": "Go to the client",
+    "delete": "Clear history"
+  },
   "RestClient": {
     "copySnippet": "Copy snippet",
     "genCode": "Generated code",
