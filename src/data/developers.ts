@@ -3,7 +3,7 @@ import { DeveloperInfo } from '@/types';
 export const developers: DeveloperInfo[] = [
   {
     name: 'jjjulietta',
-    avatar: '/dev-3.jpg',
+    avatar: '/dev-3.png',
     git: 'https://github.com/jjjulietta',
     gitName: 'jjjulietta',
   },

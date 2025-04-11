@@ -34,10 +34,6 @@ export default function RestClient() {
       url,
       (headers as KeyValue[]).filter((header) => header.key.trim() !== ''),
       body
-      // requestConfig.method,
-      // requestConfig.url,
-      // requestConfig.headers.filter((header) => header.key.trim() !== ''),
-      // requestConfig.body
     );
     const urls = buildUrl(method, body, url);
     const params = buildQueryParams(undefined, headers, method)
@@ -54,11 +50,6 @@ export default function RestClient() {
         url={url}
         setUrl={setUrl}
         onSubmit={handleSubmit}
-          // method={config.method || requestConfig.method}
-          // setMethod={requestConfig.setMethod}
-          // url={requestConfig.url}
-          // setUrl={requestConfig.setUrl}
-          // onSubmit={handleSubmit}
         />
         <div className="flex h-full gap-2">
           <RequestPanel
@@ -66,20 +57,12 @@ export default function RestClient() {
           onBodyChange={setBody}
           headers={headers}
           onHeadersChange={setHeaders}
-            // body={config.body || requestConfig.body}
-            // onBodyChange={requestConfig.setBody}
-            // headers={config.headers || requestConfig.headers}
-            // onHeadersChange={requestConfig.setHeaders}
           />
           <CodeGenPreview
            method={method as HttpMethod}
            url={url}
            headers={headers}
            body={body}
-            // method={config.method || requestConfig.method}
-            // url={config.url || requestConfig.url}
-            // headers={config.headers || requestConfig.headers}
-            // body={config.body || requestConfig.body}
           />
           <ResponseViewer
             responseBody={response?.body}
@@ -87,7 +70,6 @@ export default function RestClient() {
             statusText={response?.statusText}
             headers={response?.headers}
             requestMethod={method as HttpMethod}
-            // requestMethod={requestConfig.method}
             error={error}
           />
         </div>

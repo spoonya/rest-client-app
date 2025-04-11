@@ -91,5 +91,9 @@
     "noStatus": "No status available",
     "prettify": "Prettify"
   },
+  "History": {
+    "title": "History requests",
+    "empty": "You haven't executed any requests. It's empty here. Try:"
+  },
   "PageLayout": {}
 }
