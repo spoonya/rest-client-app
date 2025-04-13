@@ -3,24 +3,14 @@ import { RequestOptions, RequestResult } from '@/types';
 export const processRequest = async (
   options: RequestOptions
 ): Promise<RequestResult> => {
-  const fetchOptions: RequestInit = {
-    method: options.method,
-    headers: options.headers,
-  };
-
-  if (options.method !== 'GET' && options.body?.trim() !== '') {
-    fetchOptions.body = options.body;
-  }
-
-  const response = await fetch(options.url, fetchOptions);
-
-  const headers: Record<string, string> = {};
-  response.headers.forEach((value, key) => {
-    headers[key] = value;
+  const proxyResponse = await fetch('/api/proxy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(options),
   });
 
-  const contentType = response.headers.get('content-type') || '';
-  const rawData = await response.text();
+  const contentType = proxyResponse.headers.get('content-type') || '';
+  const rawData = await proxyResponse.text();
 
   let data: unknown;
   let parseError: Error | undefined;
@@ -34,8 +24,13 @@ export const processRequest = async (
     parseError = error instanceof Error ? error : new Error(String(error));
   }
 
+  const headers: Record<string, string> = {};
+  proxyResponse.headers.forEach((value, key) => {
+    headers[key] = value;
+  });
+
   return {
-    status: response.status,
+    status: proxyResponse.status,
     headers,
     data,
     rawData,
