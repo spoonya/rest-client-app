@@ -108,7 +108,8 @@
     "response": "Response",
     "status": "Status",
     "noStatus": "No status available",
-    "prettify": "Prettify"
+    "prettify": "Prettify",
+    "Clear": "Clear"
   },
   "PageLayout": {}
 }

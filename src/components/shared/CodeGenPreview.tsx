@@ -59,7 +59,6 @@ export const CodeGenPreview = ({
           : undefined,
     });
 
-    console.log(url, request);
     const options = {
       indentCount: 2,
       indentType: 'Space',

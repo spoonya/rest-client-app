@@ -35,7 +35,7 @@ export const RequestBodyEditor = forwardRef<
         );
         await formatAction?.run();
       } catch (error) {
-        console.error('Formatting error:', error);
+        console.error('Error formatting document:', error);
       }
     }
   };

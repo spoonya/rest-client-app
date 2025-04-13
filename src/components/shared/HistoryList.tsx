@@ -31,7 +31,6 @@ export const HistoryList = ({ className, list }: HistoryProps) => {
       )}
     >
       {list.map((item) => {
-        console.log(Object.values(item)[0]);
         return (
           <div key={Object.keys(item)[0]}>
             <Link

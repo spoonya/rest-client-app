@@ -15,6 +15,7 @@ interface RequestSearchProps {
   setMethod: Dispatch<SetStateAction<HttpMethod>>;
   setUrl: (value: string) => void;
   onSubmit: () => void;
+  onClickReset: () => void;
 }
 
 export const RequestSearch = ({
@@ -24,6 +25,7 @@ export const RequestSearch = ({
   setMethod,
   setUrl,
   onSubmit,
+  onClickReset,
 }: Readonly<RequestSearchProps>) => {
   const t = useTranslations('RestClient');
 
@@ -45,16 +47,20 @@ export const RequestSearch = ({
             </SelectItem>
           ))}
         </Select>
+        <Button color="danger" onPress={onClickReset}>
+          {t('Clear')}
+        </Button>
         <Input
           classNames={{
             inputWrapper: 'bg-default-50 border-1 border-gray-200',
           }}
           aria-label="Request URL"
-          placeholder="Enter endpoint URL"
+          placeholder="https://your-api.com/endpoint"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           fullWidth
         />
+
         <Button color="primary" onPress={onSubmit}>
           {t('submit')}
         </Button>

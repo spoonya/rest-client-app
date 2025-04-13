@@ -32,7 +32,7 @@ export default function RestClient() {
 
   const requestConfig = useRequestConfig({
     method: 'GET',
-    url: 'https://pokeapi.co/api/v2/pokemon/',
+    url: '',
     body: '',
     headers: [],
   });
@@ -58,9 +58,18 @@ export default function RestClient() {
   }, [encodedReq]);
 
   const handleSubmit = () => {
-    const variables = getStoredVariables();
+    const trimmedUrl = requestConfig.url.trim();
+    if (!trimmedUrl) return;
 
-    const finalUrl = applyVariables(requestConfig.url, variables);
+    const variables = getStoredVariables();
+    const finalUrl = applyVariables(trimmedUrl, variables);
+
+    try {
+      new URL(finalUrl);
+    } catch {
+      execute('GET', 'https://httpstat.us/404', [], '');
+      return;
+    }
 
     const finalHeaders = requestConfig.headers
       .filter((header) => header.key.trim() !== '')
@@ -80,11 +89,17 @@ export default function RestClient() {
     };
 
     saveRequestToHistory(requestToSave);
-
     const encoded = encodeRequestToUrl(requestToSave);
     router.replace(`/rest-client?req=${encoded}`, { scroll: false });
 
     execute(requestConfig.method, finalUrl, finalHeaders, finalBody);
+  };
+
+  const handleReset = () => {
+    requestConfig.setMethod('GET');
+    requestConfig.setUrl('');
+    requestConfig.setBody('');
+    router.replace('/rest-client', { scroll: false });
   };
 
   return (
@@ -97,6 +112,7 @@ export default function RestClient() {
           url={requestConfig.url}
           setUrl={requestConfig.setUrl}
           onSubmit={handleSubmit}
+          onClickReset={handleReset}
         />
         <div className="flex h-full gap-2">
           <RequestPanel
