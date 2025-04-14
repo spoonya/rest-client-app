@@ -3,18 +3,35 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(req: NextRequest) {
   const { url, method, headers, body } = await req.json();
 
-  const res = await fetch(url, {
+  const filteredHeaders: Record<string, string> = {};
+  Object.entries(headers || {}).forEach(([key, value]) => {
+    if (typeof value === 'string') {
+      filteredHeaders[key] = value;
+    }
+  });
+
+  delete filteredHeaders['accept-encoding'];
+
+  const fetchOptions: RequestInit = {
     method,
-    headers,
-    body: method !== 'GET' ? JSON.stringify(body) : undefined,
-  });
+    headers: filteredHeaders,
+    body: method !== 'GET' ? body : undefined,
+  };
 
-  const responseBody = await res.text();
+  try {
+    const res = await fetch(url, fetchOptions);
+    const text = await res.text();
 
-  return new NextResponse(responseBody, {
-    status: res.status,
-    headers: {
-      'Content-Type': res.headers.get('content-type') || 'text/plain',
-    },
-  });
+    return new NextResponse(text, {
+      status: res.status,
+      headers: {
+        'Content-Type': res.headers.get('content-type') || 'text/plain',
+      },
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Proxy fetch failed', details: String(error) },
+      { status: 500 }
+    );
+  }
 }
