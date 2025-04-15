@@ -6,6 +6,7 @@ import { getStoredVariables } from '@/lib/getStoredVariables';
 import { applyVariables } from '@/lib/applyVariables';
 import { encodeRequestToUrl, decodeRequestFromUrl } from '@/utils/urlParams';
 import { saveRequestToHistory } from '@/utils/storage';
+import { useDebouncedEffect } from '@/hooks/useDebouncedEffect';
 
 import {
   CodeGenPreview,
@@ -56,6 +57,27 @@ export default function RestClient() {
       );
     }
   }, [encodedReq]);
+
+  useDebouncedEffect(
+    () => {
+      const requestToSave = {
+        method: requestConfig.method,
+        url: requestConfig.url,
+        headers: requestConfig.headers,
+        body: requestConfig.body,
+      };
+
+      const encoded = encodeRequestToUrl(requestToSave);
+      router.replace(`/rest-client?req=${encoded}`, { scroll: false });
+    },
+    [
+      requestConfig.method,
+      requestConfig.url,
+      requestConfig.headers,
+      requestConfig.body,
+    ],
+    1000
+  );
 
   const handleSubmit = () => {
     const trimmedUrl = requestConfig.url.trim();
