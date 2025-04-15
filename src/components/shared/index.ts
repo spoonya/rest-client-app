@@ -5,7 +5,7 @@ export { Footer } from './Footer';
 export { Navigation } from './Navigation';
 export { PageLayout } from './PageLayout';
 export { Sidebar } from './Sidebar';
-export { Menu } from './Menu';
+
 export * from './forms';
 export { CodeGenPreview } from './CodeGenPreview';
 export { RequestSearch } from './RequestSearch';

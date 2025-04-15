@@ -23,7 +23,8 @@ export const RequestKeyValueItem = ({
 }: RequestKeyValueItemProps) => {
   const t = useTranslations('RestClient');
 
-  const filterLatin = (value: string) => value.replace(/[^a-zA-Z0-9-_ ]/g, '');
+  const filterLatin = (value: string) =>
+    value.replace(/[^a-zA-Z0-9\-_/ ]/g, '');
 
   const handleKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
     const filtered = filterLatin(e.target.value);

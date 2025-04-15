@@ -70,13 +70,8 @@ export default function RestClient() {
       const encoded = encodeRequestToUrl(requestToSave);
       router.replace(`/rest-client?req=${encoded}`, { scroll: false });
     },
-    [
-      requestConfig.method,
-      requestConfig.url,
-      requestConfig.headers,
-      requestConfig.body,
-    ],
-    1000
+    [requestConfig.headers],
+    100
   );
 
   const handleSubmit = () => {
