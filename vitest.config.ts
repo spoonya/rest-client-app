@@ -13,6 +13,12 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    server: {
+      deps: {
+        // https://github.com/vercel/next.js/issues/77200
+        inline: ['next-intl']
+      }
+    },
     coverage: {
       include: ['**/*.tsx'],
       exclude: [
