@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
 import { KeyValue } from '@/types';
 
 export const useKeyValueList = (initialItems: KeyValue[] = []) => {
-  const [items, setItems] = useState<KeyValue[]>(
-    initialItems.map((item) => ({
-      ...item,
-      id: item.id || uuidv4(),
-    }))
-  );
+  const initialized = useRef(false);
+  const [items, setItems] = useState<KeyValue[]>(() => {
+    if (initialItems.length > 0) {
+      initialized.current = true;
+      return initialItems.map((item) => ({
+        ...item,
+        id: item.id || uuidv4(),
+      }));
+    }
+    return [{ id: uuidv4(), key: '', value: '' }];
+  });
 
   const addItem = () => {
     setItems((prev) => [...prev, { id: uuidv4(), key: '', value: '' }]);
@@ -25,18 +29,20 @@ export const useKeyValueList = (initialItems: KeyValue[] = []) => {
     );
   };
 
+  const overrideItems = (newItems: KeyValue[]) => {
+    setItems(
+      newItems.map((item) => ({
+        ...item,
+        id: item.id || uuidv4(),
+      }))
+    );
+  };
+
   return {
     items,
     addItem,
     removeItem,
     updateItem,
-    setItems: (newItems: KeyValue[]) => {
-      setItems(
-        newItems.map((item) => ({
-          ...item,
-          id: item.id || uuidv4(),
-        }))
-      );
-    },
+    setItems: overrideItems,
   };
 };

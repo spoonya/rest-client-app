@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { requestTabs } from '@/services';
 import { EditorMode, KeyValue } from '@/types';
@@ -29,6 +29,17 @@ export const RequestPanel = ({
   const [activeTab, setActiveTab] = useState<requestTabs>(requestTabs.HEADERS);
   const [bodyFormat, setBodyFormat] = useState<EditorMode>('json');
 
+  const [localHeaders, setLocalHeaders] = useState<KeyValue[]>(headers);
+
+  useEffect(() => {
+    setLocalHeaders(headers);
+  }, [headers]);
+
+  const handleHeadersChange = (updated: KeyValue[]) => {
+    setLocalHeaders(updated);
+    onHeadersChange(updated);
+  };
+
   return (
     <div
       className={cn(
@@ -42,7 +53,10 @@ export const RequestPanel = ({
         variant="light"
       >
         <Tab key={requestTabs.HEADERS} title={t('headers')}>
-          <RequestHeadersTab headers={headers} setHeaders={onHeadersChange} />
+          <RequestHeadersTab
+            headers={localHeaders}
+            setHeaders={handleHeadersChange}
+          />
         </Tab>
         <Tab key={requestTabs.BODY} title={t('body')}>
           <RequestBodyTab

@@ -2,7 +2,7 @@
 
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useKeyValueList } from '@/hooks';
 import { KeyValue } from '@/types';
@@ -20,16 +20,16 @@ export const RequestHeadersTab = ({
   setHeaders,
 }: Readonly<RequestHeadersTabProps>) => {
   const t = useTranslations('RestClient');
+  const initialized = useRef(false);
   const { items, addItem, removeItem, updateItem, setItems } =
     useKeyValueList();
 
   useEffect(() => {
-    if (headers.length === 0) {
-      setItems([{ id: '', key: '', value: '' }]);
-    } else {
+    if (!initialized.current && headers.length > 0) {
+      initialized.current = true;
       setItems(headers);
     }
-  }, []);
+  }, [headers, setItems]);
 
   useEffect(() => {
     setHeaders(items);
