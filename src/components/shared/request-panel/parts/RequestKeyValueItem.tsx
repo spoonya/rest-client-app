@@ -23,12 +23,16 @@ export const RequestKeyValueItem = ({
 }: RequestKeyValueItemProps) => {
   const t = useTranslations('RestClient');
 
+  const filterLatin = (value: string) => value.replace(/[^a-zA-Z0-9-_ ]/g, '');
+
   const handleKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateItem(item.id, e.target.value, item.value);
+    const filtered = filterLatin(e.target.value);
+    updateItem(item.id, filtered, item.value);
   };
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateItem(item.id, item.key, e.target.value);
+    const filtered = filterLatin(e.target.value);
+    updateItem(item.id, item.key, filtered);
   };
 
   return (
