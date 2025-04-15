@@ -78,6 +78,10 @@
     "variables": "Variables",
     "restClient": "Rest Client"
   },
+  "Mobile": {
+    "mobileVersion": "Mobile version is not supported",
+    "Pls": "Please use the app on a computer. :( "
+  },
   "Variables": {
     "variables": "Variables",
     "key": "Key",
