@@ -20,7 +20,7 @@ export default function ProtectedLayout({
     const checkAuth = async () => {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
-        router.replace(AppRoutes.SIGN_IN);
+        router.replace(AppRoutes.HOME);
       } else {
         setIsLoading(false);
       }
@@ -38,8 +38,8 @@ export default function ProtectedLayout({
   }
 
   return (
-    <DefaultLayout className="flex h-full flex-col justify-between">
-    {children}
+    <DefaultLayout className="flex flex-col justify-between">
+      {children}
     </DefaultLayout>
   );
 }

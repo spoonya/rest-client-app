@@ -9,13 +9,13 @@ export const developers: DeveloperInfo[] = [
   },
   {
     name: 'xsetiqq',
-    avatar: '/dev-2.jpg',
+    avatar: '/dev-2.png',
     git: 'https://github.com/xsetiqq',
     gitName: 'xsetiqq',
   },
   {
     name: 'spoonya',
-    avatar: '/dev-1.jpg',
+    avatar: '/dev-1.png',
     git: 'https://github.com/spoonya',
     gitName: 'spoonya',
   },

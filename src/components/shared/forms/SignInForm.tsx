@@ -16,6 +16,7 @@ export function SignInForm() {
   const t = useTranslations('Auth');
   const tSchema = useTranslations('AuthSchema');
   const [isChecking, setIsChecking] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,8 +26,9 @@ export function SignInForm() {
     });
 
     if (error) {
-      alert(error.message);
+      setIsError(true);
     } else {
+      setIsError(false);
       router.push('/');
     }
   };
@@ -87,6 +89,9 @@ export function SignInForm() {
       <p className="text-center text-sm text-gray-600 dark:text-gray-400">
         {t('isNotAuth')} <Link href="/sign-up">{t('Sign Up')}</Link>
       </p>
+      <div className="text-red-600 !mt-0 h-5 text-center">
+        {isError ? tSchema('wrongPassowrdOrEmail') : '⠀'}
+      </div>
     </form>
   );
 }

@@ -11,6 +11,7 @@ import { Footer, Header } from '@/components';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from '../providers';
+import MobileWarning from '@/components/shared/MobileWarning';
 
 export const metadata: Metadata = {
   title: 'Rest Client App',
@@ -48,10 +49,11 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider>
             <div className="w-full flex flex-col justify-between">
               <Header />
-                    <main className='h-5/6'>
-                    {children}
-                    </main>
-                    <Footer />
+              <main className="h-full relative">
+                <MobileWarning />
+                {children}
+              </main>
+              <Footer />
             </div>
           </NextIntlClientProvider>
         </Providers>

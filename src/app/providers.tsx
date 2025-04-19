@@ -3,8 +3,6 @@
 import { useRouter } from 'next/navigation';
 
 import { HeroUIProvider } from '@heroui/react';
-import { RequestContextProvider } from '@/context/RequestProvider';
-
 
 declare module '@react-types/shared' {
   interface RouterConfig {
@@ -16,5 +14,5 @@ declare module '@react-types/shared' {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  return <HeroUIProvider navigate={router.push}><RequestContextProvider>{children}</RequestContextProvider></HeroUIProvider>;
+  return <HeroUIProvider navigate={router.push}>{children}</HeroUIProvider>;
 }

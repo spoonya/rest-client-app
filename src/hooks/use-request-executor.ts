@@ -2,19 +2,17 @@ import { useState } from 'react';
 
 import { processRequest } from '@/services';
 import { HttpMethod, KeyValue } from '@/types';
-import {
-  buildArrayFromObj,
-  buildHeadersObject,
-  getRequestStatusText,
-} from '@/utils';
+import { buildHeadersObject, getRequestStatusText } from '@/utils';
+
+interface ResponseData {
+  body: string;
+  statusCode: number;
+  statusText: string;
+  headers: Array<{ key: string; value: string }>;
+}
 
 export const useRequestExecutor = () => {
-  const [response, setResponse] = useState<{
-    body: string;
-    statusCode: number;
-    statusText: string;
-    headers: Array<{ key: string; value: string }>;
-  } | null>(null);
+  const [response, setResponse] = useState<ResponseData | null>(null);
   const [error, setError] = useState<string>('');
 
   const execute = async (
@@ -33,28 +31,30 @@ export const useRequestExecutor = () => {
         headers: requestHeaders,
         body,
       });
-      if (result.status && result.status < 400) {
-        const data = new Date();
-        const keysArr = localStorage.getItem('requestKeys')?.split(',') || [];
-        keysArr.push(data.toString());
-        localStorage.setItem('requestKeys', keysArr.join(','));
+
+      const formattedBody =
+        typeof result.data === 'object'
+          ? JSON.stringify(result.data, null, 2)
+          : String(result.data ?? '');
+
+      if (result.status === 200) {
+        const timestamp = new Date().toISOString();
+        const keys = localStorage.getItem('requestKeys')?.split(',') || [];
+
         const value = {
-          method: method,
-          url: url,
-          headers: buildArrayFromObj(headers),
-          body: body,
+          method,
+          url,
+          headers,
+          body,
         };
-        localStorage.setItem(data.toString(), JSON.stringify(value));
+
+        keys.push(timestamp);
+        localStorage.setItem('requestKeys', keys.join(','));
+        localStorage.setItem(timestamp, JSON.stringify(value));
       }
 
-      const formattedData = result.data
-        ? typeof result.data === 'object'
-          ? JSON.stringify(result.data, null, 2)
-          : String(result.data)
-        : '';
-
       setResponse({
-        body: formattedData,
+        body: formattedBody,
         statusCode: result.status,
         statusText: getRequestStatusText(result.status),
         headers: Object.entries(result.headers || {}).map(([key, value]) => ({

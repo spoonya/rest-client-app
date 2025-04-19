@@ -1,4 +1,5 @@
 import { HttpMethod } from './http-method';
+import { KeyValue } from './key-value';
 
 export interface BaseObject {
   [key: string]: string | null;
@@ -11,6 +12,6 @@ export interface HttpObject {
 export interface RequestObject {
   method: HttpMethod;
   url: string;
-  headers?: [string, string][][];
+  headers?: KeyValue[];
   body?: string;
 }
