@@ -50,7 +50,15 @@ describe('HeroSection', () => {
 
   it('renders welcome section when user is passed', () => {
     render(
-      <HeroSection user={{ user_metadata: { full_name: 'Alice' } } as any} />
+      <HeroSection
+        user={{
+          id: '1',
+          app_metadata: {},
+          aud: 'aud',
+          created_at: '2023-01-01',
+          user_metadata: { full_name: 'Alice' },
+        }}
+      />
     );
     expect(screen.getByText('Welcome, Alice')).toBeInTheDocument();
   });

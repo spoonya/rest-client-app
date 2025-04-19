@@ -17,7 +17,7 @@ vi.mock('next-intl', () => ({
   },
 }));
 vi.mock('@/utils/urlParams', () => ({
-  encodeRequestToUrl: (entry: any) => `${entry.method}-${entry.url}`,
+  encodeRequestToUrl: () => '',
 }));
 vi.mock('next/link', () => ({
   default: ({

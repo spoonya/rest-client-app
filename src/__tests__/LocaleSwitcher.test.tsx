@@ -13,7 +13,7 @@ vi.mock('next-intl', () => ({
 }));
 
 vi.mock('@heroui/react', () => ({
-  Button: ({ children, ...props }: any) => (
+  Button: ({ children, ...props }: { children: React.ReactNode }) => (
     <button {...props}>{children}</button>
   ),
   Dropdown: ({ children }: { children: React.ReactNode }) => (
@@ -25,7 +25,13 @@ vi.mock('@heroui/react', () => ({
   DropdownMenu: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
-  DropdownItem: ({ children, onPress }: any) => (
+  DropdownItem: ({
+    children,
+    onPress,
+  }: {
+    children: React.ReactNode;
+    onPress: () => void;
+  }) => (
     <div onClick={onPress} role="option">
       {children}
     </div>

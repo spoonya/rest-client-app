@@ -19,7 +19,7 @@ vi.mock('@/hooks', () => ({
 
 vi.mock('@/components', () => ({
   Preloader: () => <div>Preloader</div>,
-  HeroSection: ({ user }: { user: any }) => (
+  HeroSection: ({ user }: { user: unknown }) => (
     <div>Hero {user ? 'User' : 'Guest'}</div>
   ),
   FeaturesSection: () => <div>Features</div>,
