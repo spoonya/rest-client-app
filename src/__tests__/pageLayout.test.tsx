@@ -1,4 +1,4 @@
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { NextIntlClientProvider } from 'next-intl';
 import { DefaultLayout } from '@/layouts';
@@ -18,12 +18,13 @@ vi.mock('next/navigation', () => ({
 
 describe('<PageLayout />', () => {
   it('displays pageLayout', () => {
-
-    render(<NextIntlClientProvider locale="en" ><PageLayout title={'Hello'} userName={'User'} />
-      </NextIntlClientProvider>);
+    render(
+      <NextIntlClientProvider locale="en">
+        <PageLayout title={'Hello'} userName={'User'} />
+      </NextIntlClientProvider>
+    );
 
     expect(screen.getByText('Hello')).toBeInTheDocument();
     expect(screen.getByText('User')).toBeInTheDocument();
-
-})
-})
+  });
+});

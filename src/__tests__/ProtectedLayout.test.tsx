@@ -1,5 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
+
+import ProtectedLayout from '@/app/[locale]/(protected)/layout';
+import { render, screen, waitFor } from '@testing-library/react';
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -12,7 +14,7 @@ vi.mock('@/lib/supabase', () => ({
     auth: {
       getUser: vi.fn().mockResolvedValue({
         data: {
-          user: { id: '123', email: 'test@example.com' }, // ← считается авторизованным
+          user: { id: '123', email: 'test@example.com' },
         },
       }),
     },
@@ -28,8 +30,6 @@ vi.mock('@/layouts', () => ({
     <div>{children}</div>
   ),
 }));
-
-import ProtectedLayout from '@/app/[locale]/(protected)/layout';
 
 describe('ProtectedLayout', () => {
   it('renders children after loading', async () => {

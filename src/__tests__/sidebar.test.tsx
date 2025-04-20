@@ -1,4 +1,4 @@
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { NextIntlClientProvider } from 'next-intl';
 import { DefaultLayout } from '@/layouts';
@@ -18,12 +18,13 @@ vi.mock('next/navigation', () => ({
 
 describe('<Sidebar />', () => {
   it('displays sidebar', () => {
-
-    render(<NextIntlClientProvider locale="en" ><DefaultLayout children={<Sidebar/>} />
-      </NextIntlClientProvider>);
+    render(
+      <NextIntlClientProvider locale="en">
+        <DefaultLayout children={<Sidebar />} />
+      </NextIntlClientProvider>
+    );
 
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(3);
-
-})
-})
+  });
+});
