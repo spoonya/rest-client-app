@@ -39,8 +39,6 @@ describe('ProtectedLayout', () => {
       </ProtectedLayout>
     );
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-
     await waitFor(() => {
       expect(screen.getByText('Protected Content')).toBeInTheDocument();
     });

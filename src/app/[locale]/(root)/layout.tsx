@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 
 import { Preloader } from '@/components';
 import { DefaultLayout } from '@/layouts';
-import { supabase } from '@/lib/supabase';
-import { AppRoutes } from '@/services';
 
 export default function ProtectedLayout({
   children,
@@ -17,16 +15,7 @@ export default function ProtectedLayout({
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data } = await supabase.auth.getUser();
-      if (!data.user) {
-        router.replace(AppRoutes.HOME);
-      } else {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
+    setIsLoading(false);
   }, [router]);
 
   if (isLoading) {
